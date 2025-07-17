@@ -45,30 +45,14 @@ const RoadPolyline = ({ coords, color, opacity = 0.9, weight = 6 }: { coords: { 
 }
 
 const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: number, lng: number } }, color: string }) => {
-    const [open, setOpen] = useState(false);
-  
     return (
-      <AdvancedMarker
-        position={park.coords}
-        onClick={() => setOpen(true)}
-      >
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <div className={`p-2 ${color} rounded-full shadow-lg cursor-pointer`}>
-              <Building2 className="h-6 w-6 text-white" />
-            </div>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto max-w-xs">
-            <Card className="border-none shadow-none">
-              <CardHeader className="p-2">
-                <CardTitle className="text-base">{park.name}</CardTitle>
-              </CardHeader>
-            </Card>
-          </PopoverContent>
-        </Popover>
+      <AdvancedMarker position={park.coords}>
+        <div className={`p-2 ${color} rounded-full shadow-lg`}>
+          <Building2 className="h-6 w-6 text-white" />
+        </div>
       </AdvancedMarker>
     );
-  };
+};
 
 const InfraMapContent = () => {
   const geometry = useMapsLibrary('geometry');
