@@ -9,7 +9,7 @@ import {
   useMapsLibrary,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS } from '@/lib/constants';
+import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_THATCHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS } from '@/lib/constants';
 import { Ship, Plane, Building2 } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
@@ -143,7 +143,7 @@ const InfraMapContent = () => {
         <RoadPolyline coords={CHENNAI_OUTER_RING_ROAD_COORDS} color={"hsl(208 98% 73%)"} />
         <RoadPolyline coords={CHENNAI_PERIPHERAL_RING_ROAD_COORDS} color={"hsl(244 98% 73%)"} />
         <RoadPolyline coords={NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS} color={"hsl(300 98% 73%)"} />
-        <RoadPolyline coords={CHENNAI_CHITHOOR_EXPRESSWAY_COORDS} color={"hsl(60 98% 73%)"} />
+        <RoadPolyline coords={CHENNAI_THATCHOOR_EXPRESSWAY_COORDS} color={"#FFA500"} />
         
         <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={2} />
         <RoadPolyline coords={nh32_100km_coords} color={"#808080"} opacity={0.6} weight={2} />
@@ -244,5 +244,3 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     </APIProvider>
   );
 }
-
-    
