@@ -24,7 +24,7 @@ const RoadPolyline = ({ coords, color, opacity = 0.9, weight = 6 }: { coords: { 
   const map = useMap();
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || coords.length === 0) return;
     
     const roadPath = new google.maps.Polyline({
         path: coords,
@@ -145,9 +145,9 @@ const InfraMapContent = () => {
         <RoadPolyline coords={NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS} color={"hsl(300 98% 73%)"} />
         <RoadPolyline coords={CHENNAI_CHITHOOR_EXPRESSWAY_COORDS} color={"hsl(60 98% 73%)"} />
         
-        {nh48_100km_coords.length > 0 && <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
-        {nh32_100km_coords.length > 0 && <RoadPolyline coords={nh32_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
-        {nh16_100km_coords.length > 0 && <RoadPolyline coords={nh16_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
+        <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={2} />
+        <RoadPolyline coords={nh32_100km_coords} color={"#808080"} opacity={0.6} weight={2} />
+        <RoadPolyline coords={nh16_100km_coords} color={"#808080"} opacity={0.6} weight={2} />
         
         {Object.values(PORTS).map(port => (
           <AdvancedMarker key={port.name} position={port.coords}>
