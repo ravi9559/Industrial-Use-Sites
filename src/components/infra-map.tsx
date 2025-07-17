@@ -141,7 +141,7 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           </h2>
         </div>
         <div className="absolute top-4 left-4 z-10 w-full max-w-sm">
-           <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg" defaultValue="distance">
+           <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg">
             <AccordionItem value="distance" className="border-b-0">
                 <Card>
                     <AccordionTrigger className="p-4 w-full">
