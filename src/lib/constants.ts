@@ -1,6 +1,5 @@
 
 
-
 export const CHENNAI_OUTER_RING_ROAD_COORDS = [
     {"lat": 12.885371, "lng": 80.080709}, {"lat": 12.894909, "lng": 80.070581}, {"lat": 12.957484, "lng": 80.090322},
     {"lat": 12.990271, "lng": 80.089120}, {"lat": 12.996794, "lng": 80.087403}, {"lat": 13.017199, "lng": 80.095128},
@@ -64,15 +63,6 @@ export const CHENNAI_CHITHOOR_EXPRESSWAY_COORDS = [
     {"lat": 13.162936, "lng": 79.121239}, {"lat": 13.144465, "lng": 79.076608}
 ];
 
-export const ROAD_179B_COORDS = [
-    {"lat": 12.9320, "lng": 79.9925},
-    {"lat": 12.9815, "lng": 80.0380},
-    {"lat": 13.0130, "lng": 80.0835},
-    {"lat": 13.0400, "lng": 80.1340},
-    {"lat": 13.0750, "lng": 80.1700},
-    {"lat": 13.1180, "lng": 80.1950}
-];
-
 export const CHENNAI_CENTER = {lat: 13.0827, lng: 80.2707};
 
 export const ROADS = {
@@ -95,11 +85,6 @@ export const ROADS = {
     name: 'Chennai-Chithoor ExpressWay',
     coords: CHENNAI_CHITHOOR_EXPRESSWAY_COORDS,
     color: "hsl(43 74% 66%)",
-  },
-  'road-179b': {
-    name: 'Road 179B',
-    coords: ROAD_179B_COORDS,
-    color: "hsl(27 87% 67%)",
   }
 };
 
