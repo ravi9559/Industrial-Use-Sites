@@ -72,11 +72,6 @@ const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: numb
 export default function InfraMap({ apiKey }: { apiKey: string }) {
   const mapId = 'a12a325a741369e5';
   
-  const expresswayIntervalPoints: IntervalPoint[] = useMemo(() => 
-    getPointsAtIntervals(CHENNAI_BENGALURU_EXPRESSWAY_COORDS, 10, 100), 
-    []
-  );
-
   const chithoorExpresswayIntervalPoints: IntervalPoint[] = useMemo(() => 
     getPointsAtIntervals(CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, 10, 100), 
     []
@@ -124,13 +119,6 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           ))}
           {Object.values(SIPCOT_PARKS).map(park => (
             <ParkMarker key={park.name} park={park} color="bg-purple-500" />
-          ))}
-           {expresswayIntervalPoints.map((point, index) => (
-            <AdvancedMarker key={`nh48-pt-${index}`} position={point}>
-              <div className="flex items-center justify-center h-8 w-8 bg-red-600 text-white rounded-full shadow-md text-xs font-bold">
-                {point.distance}
-              </div>
-            </AdvancedMarker>
           ))}
           {chithoorExpresswayIntervalPoints.map((point, index) => (
             <AdvancedMarker key={`nh38-pt-${index}`} position={point}>
