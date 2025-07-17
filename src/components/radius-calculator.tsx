@@ -19,21 +19,22 @@ export function RadiusCalculator() {
   
   const locationInputRef = useRef<HTMLInputElement>(null);
   const circleRef = useRef<google.maps.Circle | null>(null);
+  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+
 
   useEffect(() => {
     if (!places || !locationInputRef.current) return;
 
-    const autocomplete = new places.Autocomplete(locationInputRef.current);
-    autocomplete.addListener('place_changed', () => {
-      setLocationPlace(autocomplete.getPlace());
-    });
-  }, [places]);
-  
-  useEffect(() => {
-    if (locationPlace) {
-        setLocationValue(locationPlace.name || '');
+    if (!autocompleteRef.current) {
+      const autocomplete = new places.Autocomplete(locationInputRef.current);
+      autocompleteRef.current = autocomplete;
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        setLocationPlace(place);
+        setLocationValue(place.name || '');
+      });
     }
-  }, [locationPlace]);
+  }, [places]);
 
   const handleDrawCircle = () => {
     if (!map || !locationPlace?.geometry?.location) return;
@@ -64,6 +65,7 @@ export function RadiusCalculator() {
   const handleClear = () => {
     if (circleRef.current) {
       circleRef.current.setMap(null);
+      circleRef.current = null;
     }
     setLocationValue('');
     setLocationPlace(null);
@@ -81,7 +83,8 @@ export function RadiusCalculator() {
             ref={locationInputRef}
             placeholder="Location"
             className="pl-10"
-            defaultValue={locationValue}
+            value={locationValue}
+            onChange={(e) => setLocationValue(e.target.value)}
           />
         </div>
         <div className="space-y-2">
