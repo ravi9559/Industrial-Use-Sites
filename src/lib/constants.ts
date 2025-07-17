@@ -1,5 +1,6 @@
 
 
+
 export const CHENNAI_OUTER_RING_ROAD_COORDS = [
     {"lat": 12.885371, "lng": 80.080709}, {"lat": 12.894909, "lng": 80.070581}, {"lat": 12.957484, "lng": 80.090322},
     {"lat": 12.990271, "lng": 80.089120}, {"lat": 12.996794, "lng": 80.087403}, {"lat": 13.017199, "lng": 80.095128},
@@ -63,6 +64,31 @@ export const CHENNAI_CHITHOOR_EXPRESSWAY_COORDS = [
     {"lat": 13.162936, "lng": 79.121239}, {"lat": 13.144465, "lng": 79.076608}
 ];
 
+export const NH48_CHENNAI_KRISHNAGIRI_COORDS = [
+    { "lat": 13.0833, "lng": 80.27
+    },
+    { "lat": 13.0822, "lng": 80.2447 },
+    { "lat": 13.065, "lng": 80.2033 },
+    { "lat": 13.0369, "lng": 80.1367 },
+    { "lat": 13.0239, "lng": 80.0825 },
+    { "lat": 12.9842, "lng": 79.9928 },
+    { "lat": 12.9642, "lng": 79.9167 },
+    { "lat": 12.9511, "lng": 79.845 },
+    { "lat": 12.915, "lng": 79.7169 },
+    { "lat": 12.8719, "lng": 79.5892 },
+    { "lat": 12.8681, "lng": 79.4503 },
+    { "lat": 12.8833, "lng": 79.3197 },
+    { "lat": 12.885, "lng": 79.245 },
+    { "lat": 12.885, "lng": 79.1761 },
+    { "lat": 12.9, "lng": 79.1039 },
+    { "lat": 12.8464, "lng": 78.9619 },
+    { "lat": 12.7844, "lng": 78.8436 },
+    { "lat": 12.7483, "lng": 78.7103 },
+    { "lat": 12.6581, "lng": 78.5806 },
+    { "lat": 12.5906, "lng": 78.4344 },
+    { "lat": 12.525, "lng": 78.2167 }
+];
+
 export const CHENNAI_CENTER = {lat: 13.0827, lng: 80.2707};
 
 export const ROADS = {
@@ -85,6 +111,11 @@ export const ROADS = {
     name: 'Chennai-Chithoor ExpressWay',
     coords: CHENNAI_CHITHOOR_EXPRESSWAY_COORDS,
     color: "hsl(43 74% 66%)",
+  },
+   'nh-48-chennai-krishnagiri': {
+    name: 'NH 48 Chennai-Krishnagiri',
+    coords: NH48_CHENNAI_KRISHNAGIRI_COORDS,
+    color: "#FF5733"
   }
 };
 
