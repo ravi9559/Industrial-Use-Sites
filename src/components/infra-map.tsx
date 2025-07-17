@@ -19,7 +19,7 @@ import { DistanceCalculator } from './distance-calculator';
 import { RadiusCalculator } from './radius-calculator';
 import { Route, CircleDot } from 'lucide-react';
 
-const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[], color: string }) => {
+const RoadPolyline = ({ coords, color, opacity = 0.9, weight = 6 }: { coords: { lat: number, lng: number }[], color: string, opacity?: number, weight?: number }) => {
   const map = useMap();
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[
         path: coords,
         geodesic: true,
         strokeColor: color,
-        strokeOpacity: 0.9,
-        strokeWeight: 6,
+        strokeOpacity: opacity,
+        strokeWeight: weight,
     });
     
     roadPath.setMap(map);
@@ -38,7 +38,7 @@ const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[
     return () => {
       roadPath.setMap(null);
     };
-  }, [map, coords, color]);
+  }, [map, coords, color, opacity, weight]);
 
   return null;
 }
@@ -81,6 +81,33 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     getPointsAtIntervals(NH32_CHENNAI_TRICHY_COORDS, 10, 100),
     []
   );
+
+  const nh48_100km_coords = useMemo(() => {
+    if (nh48IntervalPoints.length === 0) return [];
+    const lastPoint = nh48IntervalPoints[nh48IntervalPoints.length - 1];
+    const coords = [];
+    let totalDistance = 0;
+    for(let i = 0; i < NH48_CHENNAI_KRISHNAGIRI_COORDS.length - 1; i++) {
+        coords.push(NH48_CHENNAI_KRISHNAGIRI_COORDS[i]);
+        if (NH48_CHENNAI_KRISHNAGIRI_COORDS[i].lat === lastPoint.lat && NH48_CHENNAI_KRISHNAGIRI_COORDS[i].lng === lastPoint.lng) {
+            break;
+        }
+        // A rough approximation to find the segment where the 100km point lies
+        if (google.maps.geometry) {
+           const dist = google.maps.geometry.spherical.computeDistanceBetween(
+                new google.maps.LatLng(NH48_CHENNAI_KRISHNAGIRI_COORDS[0]),
+                new google.maps.LatLng(NH48_CHENNAI_KRISHNAGIRI_COORDS[i+1])
+            ) / 1000;
+            if (dist > 100) {
+                 coords.push(NH48_CHENNAI_KRISHNAGIRI_COORDS[i+1]);
+                 break;
+            }
+        }
+    }
+     // Add the last point precisely
+    coords.push(lastPoint);
+    return coords;
+  }, [nh48IntervalPoints]);
   
   const [polylines, setPolylines] = useState<{ [key: string]: google.maps.Polyline }>({});
 
@@ -99,7 +126,7 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           fullscreenControl={false}
           className="h-full w-full"
         >
-          <RoadPolyline coords={NH48_CHENNAI_KRISHNAGIRI_COORDS} color={"#FF5733"} />
+          <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={8} />
           <RoadPolyline coords={NH32_CHENNAI_TRICHY_COORDS} color={"#3498DB"} />
           {Object.values(ROADS).map(road => (
             <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
