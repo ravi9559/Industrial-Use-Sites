@@ -7,8 +7,8 @@ import {
   useMap,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER, PORTS } from '@/lib/constants';
-import { Ship } from 'lucide-react';
+import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS } from '@/lib/constants';
+import { Ship, Plane } from 'lucide-react';
 
 type Point = {
   key: string;
@@ -61,6 +61,13 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
             <AdvancedMarker key={port.name} position={port.coords}>
               <div className="p-2 bg-primary rounded-full shadow-lg">
                 <Ship className="h-6 w-6 text-primary-foreground" />
+              </div>
+            </AdvancedMarker>
+          ))}
+          {Object.values(AIRPORTS).map(airport => (
+            <AdvancedMarker key={airport.name} position={airport.coords}>
+              <div className="p-2 bg-accent rounded-full shadow-lg">
+                <Plane className="h-6 w-6 text-accent-foreground" />
               </div>
             </AdvancedMarker>
           ))}

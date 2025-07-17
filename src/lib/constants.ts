@@ -100,3 +100,10 @@ export const PORTS = {
     coords: { lat: 13.312549338380755, lng: 80.3405114393525 }
   }
 };
+
+export const AIRPORTS = {
+  'chennai-airport': {
+    name: 'Chennai Airport',
+    coords: { lat: 12.982893056315735, lng: 80.16406999179026 }
+  }
+};
