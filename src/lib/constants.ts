@@ -1,6 +1,7 @@
 
 
 
+
 export const CHENNAI_OUTER_RING_ROAD_COORDS = [
     {"lat": 12.885371, "lng": 80.080709}, {"lat": 12.894909, "lng": 80.070581}, {"lat": 12.957484, "lng": 80.090322},
     {"lat": 12.990271, "lng": 80.089120}, {"lat": 12.996794, "lng": 80.087403}, {"lat": 13.017199, "lng": 80.095128},
@@ -89,6 +90,14 @@ export const NH48_CHENNAI_KRISHNAGIRI_COORDS = [
     { "lat": 12.525, "lng": 78.2167 }
 ];
 
+export const NH32_CHENNAI_TRICHY_COORDS = [
+    { "lat": 13.0827, "lng": 80.2707 },
+    { "lat": 12.919, "lng": 80.229 },
+    { "lat": 12.625, "lng": 80.193 },
+    { "lat": 12.51, "lng": 80.155 },
+    { "lat": 12.26, "lng": 79.94 },
+];
+
 export const CHENNAI_CENTER = {lat: 13.0827, lng: 80.2707};
 
 export const ROADS = {
@@ -116,6 +125,11 @@ export const ROADS = {
     name: 'NH 48 Chennai-Krishnagiri',
     coords: NH48_CHENNAI_KRISHNAGIRI_COORDS,
     color: "#FF5733"
+  },
+  'nh-32-chennai-trichy': {
+    name: 'NH 32 Chennai-Trichy',
+    coords: NH32_CHENNAI_TRICHY_COORDS,
+    color: "#3498DB"
   }
 };
 
