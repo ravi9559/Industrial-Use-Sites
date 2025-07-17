@@ -67,21 +67,28 @@ export const ROADS = {
   'chennai-outer-ring-road': {
     name: 'Chennai Outer Ring Road',
     coords: CHENNAI_OUTER_RING_ROAD_COORDS,
-    color: "hsl(208, 98%, 73%)",
+    color: "hsl(208 98% 73%)",
   },
   'chennai-peripheral-ring-road': {
     name: 'CPRR-Chennai Peripheral Ring Road',
     coords: CHENNAI_PERIPHERAL_RING_ROAD_COORDS,
-    color: "hsl(244, 98%, 73%)",
+    color: "hsl(244 98% 73%)",
   },
   'chennai-bengaluru-expressway': {
     name: 'NE 7- Chennai Bengaluru Expressway',
     coords: CHENNAI_BENGALURU_EXPRESSWAY_COORDS,
-    color: "hsl(173, 58%, 39%)",
+    color: "hsl(173 58% 39%)",
   },
   'chennai-chithoor-expressway': {
     name: 'Chennai-Chithoor ExpressWay',
     coords: CHENNAI_CHITHOOR_EXPRESSWAY_COORDS,
-    color: "hsl(43, 74%, 66%)",
+    color: "hsl(43 74% 66%)",
+  }
+};
+
+export const PORTS = {
+  'chennai-port': {
+    name: 'Chennai Port',
+    coords: { lat: 13.083554, lng: 80.273651 }
   }
 };

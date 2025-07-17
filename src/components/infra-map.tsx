@@ -5,8 +5,10 @@ import {
   APIProvider,
   Map,
   useMap,
+  AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER } from '@/lib/constants';
+import { ROADS, CHENNAI_CENTER, PORTS } from '@/lib/constants';
+import { Ship } from 'lucide-react';
 
 type Point = {
   key: string;
@@ -54,6 +56,13 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
         >
           {Object.values(ROADS).map(road => (
             <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
+          ))}
+          {Object.values(PORTS).map(port => (
+            <AdvancedMarker key={port.name} position={port.coords}>
+              <div className="p-2 bg-primary rounded-full shadow-lg">
+                <Ship className="h-6 w-6 text-primary-foreground" />
+              </div>
+            </AdvancedMarker>
           ))}
         </Map>
       </div>
