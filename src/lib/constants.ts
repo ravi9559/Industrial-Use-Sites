@@ -90,5 +90,9 @@ export const PORTS = {
   'chennai-port': {
     name: 'Chennai Port',
     coords: { lat: 13.083554, lng: 80.273651 }
+  },
+  'ennore-port': {
+    name: 'Ennore Port',
+    coords: { lat: 13.259793913590666, lng: 80.33744931051542 }
   }
 };
