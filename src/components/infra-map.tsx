@@ -131,6 +131,7 @@ const InfraMapContent = () => {
         streetViewControl={false}
         fullscreenControl={false}
         className="h-full w-full"
+        mapId="DEMO_MAP_ID"
         {...mapOptions}
       >
         <RoadPolyline coords={CHENNAI_OUTER_RING_ROAD_COORDS} color={"hsl(208 98% 73%)"} />
