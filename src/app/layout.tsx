@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'InfraMapper Chennai',
-  description: 'Industrial infrastructure map of Chennai',
+  title: 'InfraMapper',
+  description: 'Industrial infrastructure map',
 };
 
 export default function RootLayout({
