@@ -1,15 +1,24 @@
 
-
 export const NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS = [
-    {"lat": 12.974441, "lng": 79.940561}, {"lat": 12.986664, "lng": 79.914182}, {"lat": 13.003887, "lng": 79.882747},
-    {"lat": 13.030554, "lng": 79.842752}, {"lat": 13.056109, "lng": 79.808381}, {"lat": 13.085831, "lng": 79.770101},
-    {"lat": 13.111110, "lng": 79.739722}, {"lat": 13.136109, "lng": 79.704719}, {"lat": 13.161108, "lng": 79.668049},
-    {"lat": 13.186942, "lng": 79.630276}, {"lat": 13.208608, "lng": 79.596941}, {"lat": 13.230275, "lng": 79.562775},
-    {"lat": 13.251941, "lng": 79.529440}, {"lat": 13.272775, "lng": 79.496942}, {"lat": 13.292499, "lng": 79.465554},
-    {"lat": 13.311387, "lng": 79.435276}, {"lat": 13.329442, "lng": 79.405832}, {"lat": 13.346664, "lng": 79.377498},
-    {"lat": 13.362775, "lng": 79.350276}, {"lat": 13.378054, "lng": 79.323888}, {"lat": 13.392220, "lng": 79.298610},
-    {"lat": 13.405554, "lng": 79.274165}, {"lat": 13.418054, "lng": 79.250554}, {"lat": 13.429720, "lng": 79.227776},
-    {"lat": 13.440554, "lng": 79.205832}, {"lat": 13.450554, "lng": 79.184721}, {"lat": 13.459720, "lng": 79.164443}
+    {"lat": 12.992340, "lng": 79.985086}, {"lat": 12.999951, "lng": 79.969636}, {"lat": 12.985650, "lng": 79.943458},
+    {"lat": 12.986068, "lng": 79.930927}, {"lat": 12.982555, "lng": 79.924318}, {"lat": 12.967249, "lng": 79.918396},
+    {"lat": 12.961352, "lng": 79.906036}, {"lat": 12.951064, "lng": 79.898483}, {"lat": 12.947760, "lng": 79.894578},
+    {"lat": 12.937889, "lng": 79.871489}, {"lat": 12.937973, "lng": 79.863507}, {"lat": 12.936383, "lng": 79.851276},
+    {"lat": 12.920698, "lng": 79.826900}, {"lat": 12.917435, "lng": 79.819433}, {"lat": 12.920112, "lng": 79.793898},
+    {"lat": 12.920071, "lng": 79.776861}, {"lat": 12.915971, "lng": 79.760381}, {"lat": 12.926763, "lng": 79.716264},
+    {"lat": 12.940357, "lng": 79.702188}, {"lat": 12.944205, "lng": 79.694549}, {"lat": 12.942532, "lng": 79.676439},
+    {"lat": 12.941988, "lng": 79.660045}, {"lat": 12.957839, "lng": 79.638459}, {"lat": 12.967793, "lng": 79.614812},
+    {"lat": 12.969967, "lng": 79.598204}, {"lat": 12.972644, "lng": 79.587175}, {"lat": 12.971180, "lng": 79.566318},
+    {"lat": 12.994640, "lng": 79.509026}, {"lat": 13.019980, "lng": 79.458558}, {"lat": 13.027548, "lng": 79.425642},
+    {"lat": 13.031018, "lng": 79.419505}, {"lat": 13.035199, "lng": 79.401437}, {"lat": 13.034990, "lng": 79.393412},
+    {"lat": 13.037624, "lng": 79.386760}, {"lat": 13.049539, "lng": 79.352042}, {"lat": 13.052215, "lng": 79.282304},
+    {"lat": 13.058277, "lng": 79.265954}, {"lat": 13.064936, "lng": 79.253011}, {"lat": 13.061633, "lng": 79.237819},
+    {"lat": 13.070998, "lng": 79.214859}, {"lat": 13.093654, "lng": 79.190612}, {"lat": 13.095786, "lng": 79.167695},
+    {"lat": 13.090791, "lng": 79.157739}, {"lat": 13.092421, "lng": 79.147847}, {"lat": 13.099798, "lng": 79.131024},
+    {"lat": 13.115431, "lng": 79.113085}, {"lat": 13.132775, "lng": 79.084246}, {"lat": 13.153963, "lng": 79.069827},
+    {"lat": 13.168673, "lng": 79.045579}, {"lat": 13.178158, "lng": 79.007943}, {"lat": 13.178743, "lng": 78.986742},
+    {"lat": 13.176236, "lng": 78.955972}, {"lat": 13.169425, "lng": 78.939064}, {"lat": 13.172392, "lng": 78.909881},
+    {"lat": 13.180665, "lng": 78.886063}, {"lat": 13.180958, "lng": 78.871558}, {"lat": 13.178910, "lng": 78.854907}
 ];
 
 export const CHENNAI_CHITHOOR_EXPRESSWAY_COORDS = [
@@ -131,29 +140,6 @@ export const NH16_CHENNAI_TADA_COORDS = [
 
 export const CHENNAI_CENTER = {lat: 13.0827, lng: 80.2707};
 
-export const ROADS = {
-  'chennai-outer-ring-road': {
-    name: 'Chennai Outer Ring Road',
-    coords: CHENNAI_OUTER_RING_ROAD_COORDS,
-    color: "hsl(208 98% 73%)",
-  },
-  'chennai-peripheral-ring-road': {
-    name: 'CPRR-Chennai Peripheral Ring Road',
-    coords: CHENNAI_PERIPHERAL_RING_ROAD_COORDS,
-    color: "hsl(244 98% 73%)",
-  },
-  'ne7-chennai-bengaluru-expressway': {
-    name: 'NE7 Chennai-Bengaluru Expressway',
-    coords: NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS,
-    color: "hsl(300 98% 73%)",
-  },
-  'chennai-chithoor-expressway': {
-    name: 'Chennai-Chithoor Expressway',
-    coords: CHENNAI_CHITHOOR_EXPRESSWAY_COORDS,
-    color: "hsl(60 98% 73%)",
-  }
-};
-
 export const PORTS = {
   'chennai-port': {
     name: 'Chennai Port',
@@ -189,7 +175,7 @@ export const SIDCO_PARKS = {
     'kurichi': { name: 'SIDCO Industrial Estate, Kurichi', coords: { lat: 12.970577, lng: 80.0877137 }},
     'kakkalur': { name: 'SIDCO Industrial Estate, Kakkalur', coords: { lat: 13.0019466, lng: 80.0029649 }},
     'tirumudivakkam': { name: 'SIDCO Industrial Estate, Tirumudivakkam', coords: { lat: 12.9132556, lng: 79.9089872 }},
-    'ambattur': { name: 'SIDCO Industrial Estate, Ambattur', coords: { lat: 12.9203218, lng: 79.91468499999999 }},
+    'ambattur': { name: 'SIDCO Industrial Estate, Ambattur', coords: { lat: 12.9203218, "lng": 79.91468499999999 }},
     'womens-thirumudivakkam': { name: 'SIDCO Womens Industrial Park, Thirumudivakkam', coords: { lat: 12.8680533, lng: 79.9553596 }},
     'kappalur': { name: 'SIDCO Industrial Estate, Kappalur', coords: { lat: 12.9239597, lng: 79.8878215 }},
     'ranipet': { name: 'SIDCO Industrial Estate, Ranipet', coords: { lat: 12.6529912, lng: 79.53806420000001 }},
