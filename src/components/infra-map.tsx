@@ -9,7 +9,7 @@ import {
   useMapsLibrary,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS } from '@/lib/constants';
+import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS } from '@/lib/constants';
 import { Ship, Plane, Building2 } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
@@ -74,6 +74,7 @@ const InfraMapContent = () => {
   const geometry = useMapsLibrary('geometry');
   const [nh48_100km_coords, setNh48_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
   const [nh32_100km_coords, setNh32_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
+  const [nh16_100km_coords, setNh16_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
 
   const nh48IntervalPoints: IntervalPoint[] = useMemo(() =>
     getPointsAtIntervals(NH48_CHENNAI_KRISHNAGIRI_COORDS, 10, 100),
@@ -85,6 +86,11 @@ const InfraMapContent = () => {
     []
   );
 
+  const nh16IntervalPoints: IntervalPoint[] = useMemo(() =>
+    getPointsAtIntervals(NH16_CHENNAI_TADA_COORDS, 10, 100),
+    []
+  );
+
   useEffect(() => {
     if (!geometry) return;
 
@@ -92,6 +98,7 @@ const InfraMapContent = () => {
         const coords = [];
         let totalDistance = 0;
         for(let i = 0; i < sourceCoords.length - 1; i++) {
+            coords.push(sourceCoords[i]);
             const startPoint = new google.maps.LatLng(sourceCoords[i]);
             const endPoint = new google.maps.LatLng(sourceCoords[i+1]);
             const segmentDistance = geometry.spherical.computeDistanceBetween(startPoint, endPoint) / 1000;
@@ -102,12 +109,10 @@ const InfraMapContent = () => {
                 const point100km = geometry.spherical.computeOffset(startPoint, remainingDist * 1000, heading);
                 coords.push({lat: point100km.lat(), lng: point100km.lng()});
                 break;
-            } else {
-                coords.push(sourceCoords[i]);
-                totalDistance += segmentDistance;
-                if (i === sourceCoords.length - 2) { // Add the last point if we are at the end
-                    coords.push(sourceCoords[i+1]);
-                }
+            }
+            totalDistance += segmentDistance;
+            if (i === sourceCoords.length - 2) { // Add the last point if we are at the end
+                coords.push(sourceCoords[i+1]);
             }
         }
         return coords;
@@ -115,6 +120,7 @@ const InfraMapContent = () => {
     
     setNh48_100km_coords(calculate100kmPath(NH48_CHENNAI_KRISHNAGIRI_COORDS));
     setNh32_100km_coords(calculate100kmPath(NH32_CHENNAI_TRICHY_COORDS));
+    setNh16_100km_coords(calculate100kmPath(NH16_CHENNAI_TADA_COORDS));
 
   }, [geometry]);
 
@@ -135,6 +141,7 @@ const InfraMapContent = () => {
       >
         {nh48_100km_coords.length > 0 && <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
         {nh32_100km_coords.length > 0 && <RoadPolyline coords={nh32_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
+        {nh16_100km_coords.length > 0 && <RoadPolyline coords={nh16_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
         
         {Object.values(ROADS).map(road => (
           <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
@@ -171,6 +178,14 @@ const InfraMapContent = () => {
         {nh32IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh32-ct-pt-${index}`} position={point}>
             <div className="flex items-center justify-center h-8 w-8 bg-cyan-600 text-white rounded-full shadow-md text-xs font-bold">
+              {point.distance}
+            </div>
+          </AdvancedMarker>
+        ))}
+
+        {nh16IntervalPoints.map((point, index) => (
+          <AdvancedMarker key={`nh16-ct-pt-${index}`} position={point}>
+            <div className="flex items-center justify-center h-8 w-8 bg-green-600 text-white rounded-full shadow-md text-xs font-bold">
               {point.distance}
             </div>
           </AdvancedMarker>
