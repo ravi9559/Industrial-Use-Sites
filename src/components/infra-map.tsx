@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useMemo } from 'react';
@@ -7,7 +8,7 @@ import {
   useMap,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, CHENNAI_BENGALURU_EXPRESSWAY_COORDS } from '@/lib/constants';
+import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_CHITHOOR_EXPRESSWAY_COORDS } from '@/lib/constants';
 import { Ship, Plane } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
@@ -44,6 +45,11 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     []
   );
 
+  const chithoorExpresswayIntervalPoints: IntervalPoint[] = useMemo(() => 
+    getPointsAtIntervals(CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, 10, 100), 
+    []
+  );
+
   return (
     <APIProvider apiKey={apiKey}>
       <div className="relative h-full w-full">
@@ -74,6 +80,13 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           ))}
            {expresswayIntervalPoints.map((point, index) => (
             <AdvancedMarker key={`nh48-pt-${index}`} position={point}>
+              <div className="flex items-center justify-center h-8 w-8 bg-destructive text-destructive-foreground rounded-full shadow-md text-xs font-bold">
+                {point.distance}
+              </div>
+            </AdvancedMarker>
+          ))}
+          {chithoorExpresswayIntervalPoints.map((point, index) => (
+            <AdvancedMarker key={`nh38-pt-${index}`} position={point}>
               <div className="flex items-center justify-center h-8 w-8 bg-destructive text-destructive-foreground rounded-full shadow-md text-xs font-bold">
                 {point.distance}
               </div>
