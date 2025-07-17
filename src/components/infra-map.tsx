@@ -59,6 +59,7 @@ const InfraMapContent = () => {
   const [nh48_100km_coords, setNh48_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
   const [nh32_100km_coords, setNh32_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
   const [nh16_100km_coords, setNh16_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
+  const [mapOptions, setMapOptions] = useState<google.maps.MapOptions>({});
 
   const nh48IntervalPoints: IntervalPoint[] = useMemo(() =>
     getPointsAtIntervals(NH48_CHENNAI_KRISHNAGIRI_COORDS, 10, 100),
@@ -106,6 +107,15 @@ const InfraMapContent = () => {
     setNh48_100km_coords(calculate100kmPath(NH48_CHENNAI_KRISHNAGIRI_COORDS));
     setNh32_100km_coords(calculate100kmPath(NH32_CHENNAI_TRICHY_COORDS));
     setNh16_100km_coords(calculate100kmPath(NH16_CHENNAI_TADA_COORDS));
+    
+    setMapOptions({
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+          position: google.maps.ControlPosition.TOP_RIGHT,
+          mapTypeIds: ['roadmap', 'satellite'],
+        },
+    });
 
   }, [geometry]);
 
@@ -120,14 +130,9 @@ const InfraMapContent = () => {
         disableDefaultUI={false}
         zoomControl={true}
         streetViewControl={false}
-        mapTypeControl={true}
-        mapTypeControlOptions={{
-          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          mapTypeIds: ['roadmap', 'satellite'],
-        }}
         fullscreenControl={false}
         className="h-full w-full"
+        {...mapOptions}
       >
         <RoadPolyline coords={CHENNAI_OUTER_RING_ROAD_COORDS} color={"hsl(208 98% 73%)"} />
         <RoadPolyline coords={CHENNAI_PERIPHERAL_RING_ROAD_COORDS} color={"hsl(244 98% 73%)"} />
