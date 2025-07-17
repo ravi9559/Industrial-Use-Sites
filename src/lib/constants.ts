@@ -105,5 +105,9 @@ export const AIRPORTS = {
   'chennai-airport': {
     name: 'Chennai Airport',
     coords: { lat: 12.982893056315735, lng: 80.16406999179026 }
+  },
+  'chennai-greenfield-airport-parandur': {
+    name: 'Chennai GreenField Airport-Parandur',
+    coords: { lat: 12.936792819008984, lng: 79.7428846962656 }
   }
 };
