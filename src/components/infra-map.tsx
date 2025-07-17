@@ -140,13 +140,15 @@ const InfraMapContent = () => {
         fullscreenControl={false}
         className="h-full w-full"
       >
+        <RoadPolyline key={ROADS['chennai-outer-ring-road'].name} coords={ROADS['chennai-outer-ring-road'].coords} color={ROADS['chennai-outer-ring-road'].color} />
+        <RoadPolyline key={ROADS['chennai-peripheral-ring-road'].name} coords={ROADS['chennai-peripheral-ring-road'].coords} color={ROADS['chennai-peripheral-ring-road'].color} />
+        <RoadPolyline key={ROADS['ne7-chennai-bengaluru-expressway'].name} coords={ROADS['ne7-chennai-bengaluru-expressway'].coords} color={ROADS['ne7-chennai-bengaluru-expressway'].color} />
+        <RoadPolyline key={ROADS['chennai-chithoor-expressway'].name} coords={ROADS['chennai-chithoor-expressway'].coords} color={ROADS['chennai-chithoor-expressway'].color} />
+        
         {nh48_100km_coords.length > 0 && <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
         {nh32_100km_coords.length > 0 && <RoadPolyline coords={nh32_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
         {nh16_100km_coords.length > 0 && <RoadPolyline coords={nh16_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
         
-        {Object.values(ROADS).map(road => (
-          <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
-        ))}
         {Object.values(PORTS).map(port => (
           <AdvancedMarker key={port.name} position={port.coords}>
             <div className="p-2 bg-blue-500 text-white rounded-full shadow-lg">
