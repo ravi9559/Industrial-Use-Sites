@@ -73,14 +73,8 @@ export function RadiusCalculator() {
   };
 
   return (
-    <Card className="shadow-lg">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-            <CircleDot className="h-6 w-6 text-primary"/>
-            Radius Tool
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
+    <div className="shadow-lg">
+      <CardContent className="space-y-4 pt-6">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -110,6 +104,6 @@ export function RadiusCalculator() {
             </Button>
         </div>
       </CardContent>
-    </Card>
+    </div>
   );
 }

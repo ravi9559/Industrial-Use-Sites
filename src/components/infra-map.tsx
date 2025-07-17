@@ -14,7 +14,7 @@ import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 import { DistanceCalculator } from './distance-calculator';
 import { RadiusCalculator } from './radius-calculator';
 import { Route, CircleDot } from 'lucide-react';
@@ -136,26 +136,34 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           ))}
         </Map>
         <div className="absolute top-4 left-4 z-10 w-full max-w-sm">
-          <Tabs defaultValue="distance" className="w-full">
-            <Card>
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="distance">
-                  <Route className="mr-2 h-4 w-4"/>
-                  Distance
-                </TabsTrigger>
-                <TabsTrigger value="radius">
-                  <CircleDot className="mr-2 h-4 w-4"/>
-                  Radius
-                </TabsTrigger>
-              </TabsList>
-            </Card>
-            <TabsContent value="distance">
-              <DistanceCalculator />
-            </TabsContent>
-            <TabsContent value="radius">
-              <RadiusCalculator />
-            </TabsContent>
-          </Tabs>
+           <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg" defaultValue="distance">
+            <AccordionItem value="distance" className="border-b-0">
+                <Card>
+                    <AccordionTrigger className="p-4 w-full">
+                        <div className="flex items-center gap-2 text-lg font-semibold">
+                            <Route className="h-6 w-6 text-primary" />
+                            <span>Distance Calculator</span>
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <DistanceCalculator />
+                    </AccordionContent>
+                </Card>
+            </AccordionItem>
+            <AccordionItem value="radius" className="border-b-0">
+                 <Card className="mt-2">
+                    <AccordionTrigger className="p-4 w-full">
+                         <div className="flex items-center gap-2 text-lg font-semibold">
+                            <CircleDot className="h-6 w-6 text-primary" />
+                            <span>Circle Radius</span>
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <RadiusCalculator />
+                    </AccordionContent>
+                </Card>
+            </AccordionItem>
+          </Accordion>
         </div>
       </div>
     </APIProvider>
