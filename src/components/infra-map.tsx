@@ -8,7 +8,7 @@ import {
   useMap,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS } from '@/lib/constants';
+import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS } from '@/lib/constants';
 import { Ship, Plane, Building2 } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
@@ -72,11 +72,6 @@ const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: numb
 export default function InfraMap({ apiKey }: { apiKey: string }) {
   const mapId = 'a12a325a741369e5';
   
-  const chithoorExpresswayIntervalPoints: IntervalPoint[] = useMemo(() => 
-    getPointsAtIntervals(CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, 10, 100), 
-    []
-  );
-
   const nh48IntervalPoints: IntervalPoint[] = useMemo(() =>
     getPointsAtIntervals(NH48_CHENNAI_KRISHNAGIRI_COORDS, 10, 100),
     []
@@ -119,13 +114,6 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           ))}
           {Object.values(SIPCOT_PARKS).map(park => (
             <ParkMarker key={park.name} park={park} color="bg-purple-500" />
-          ))}
-          {chithoorExpresswayIntervalPoints.map((point, index) => (
-            <AdvancedMarker key={`nh38-pt-${index}`} position={point}>
-              <div className="flex items-center justify-center h-8 w-8 bg-red-600 text-white rounded-full shadow-md text-xs font-bold">
-                {point.distance}
-              </div>
-            </AdvancedMarker>
           ))}
           {nh48IntervalPoints.map((point, index) => (
             <AdvancedMarker key={`nh48-ck-pt-${index}`} position={point}>
