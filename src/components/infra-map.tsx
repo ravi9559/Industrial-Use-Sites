@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   APIProvider,
   Map,
@@ -12,6 +12,8 @@ import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, CHENNAI_BENGALURU_EXPRESSWAY_CO
 import { Ship, Plane, Building2 } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[], color: string }) => {
   const map = useMap();
@@ -36,6 +38,32 @@ const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[
 
   return null;
 }
+
+const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: number, lng: number } }, color: string }) => {
+    const [open, setOpen] = useState(false);
+  
+    return (
+      <AdvancedMarker
+        position={park.coords}
+        onClick={() => setOpen(true)}
+      >
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <div className={`p-2 ${color} rounded-full shadow-lg cursor-pointer`}>
+              <Building2 className="h-6 w-6 text-white" />
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto max-w-xs">
+            <Card className="border-none shadow-none">
+              <CardHeader className="p-2">
+                <CardTitle className="text-base">{park.name}</CardTitle>
+              </CardHeader>
+            </Card>
+          </PopoverContent>
+        </Popover>
+      </AdvancedMarker>
+    );
+  };
 
 export default function InfraMap({ apiKey }: { apiKey: string }) {
   const mapId = 'a12a325a741369e5';
@@ -79,18 +107,10 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
             </AdvancedMarker>
           ))}
           {Object.values(SIDCO_PARKS).map(park => (
-            <AdvancedMarker key={park.name} position={park.coords}>
-              <div className="p-2 bg-green-500 rounded-full shadow-lg">
-                <Building2 className="h-6 w-6 text-white" />
-              </div>
-            </AdvancedMarker>
+            <ParkMarker key={park.name} park={park} color="bg-green-500" />
           ))}
           {Object.values(SIPCOT_PARKS).map(park => (
-            <AdvancedMarker key={park.name} position={park.coords}>
-              <div className="p-2 bg-orange-500 rounded-full shadow-lg">
-                <Building2 className="h-6 w-6 text-white" />
-              </div>
-            </AdvancedMarker>
+            <ParkMarker key={park.name} park={park} color="bg-orange-500" />
           ))}
            {expresswayIntervalPoints.map((point, index) => (
             <AdvancedMarker key={`nh48-pt-${index}`} position={point}>
