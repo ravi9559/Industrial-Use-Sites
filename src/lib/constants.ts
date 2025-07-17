@@ -94,5 +94,9 @@ export const PORTS = {
   'ennore-port': {
     name: 'Ennore Port',
     coords: { lat: 13.259793913590666, lng: 80.33744931051542 }
+  },
+  'adani-kattupalli-port': {
+    name: 'Adani Kattupalli Port',
+    coords: { lat: 13.312549338380755, lng: 80.3405114393525 }
   }
 };
