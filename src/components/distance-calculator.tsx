@@ -110,7 +110,7 @@ export function DistanceCalculator() {
   }, [toPlace]);
 
   return (
-    <Card className="absolute top-4 left-4 z-10 w-full max-w-sm shadow-lg">
+    <Card className="shadow-lg">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
             <Route className="h-6 w-6 text-primary"/>

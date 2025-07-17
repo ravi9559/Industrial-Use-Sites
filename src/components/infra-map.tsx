@@ -14,7 +14,10 @@ import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { DistanceCalculator } from './distance-calculator';
+import { RadiusCalculator } from './radius-calculator';
+import { Route, CircleDot } from 'lucide-react';
 
 const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[], color: string }) => {
   const map = useMap();
@@ -80,14 +83,18 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
   );
 
   return (
-    <APIProvider apiKey={apiKey} libraries={['places', 'routes']}>
+    <APIProvider apiKey={apiKey} libraries={['places', 'routes', 'geometry']}>
       <div className="relative h-full w-full">
         <Map
           defaultCenter={CHENNAI_CENTER}
           defaultZoom={10}
           mapId={mapId}
           gestureHandling={'greedy'}
-          disableDefaultUI={true}
+          disableDefaultUI={false}
+          zoomControl={true}
+          streetViewControl={false}
+          mapTypeControl={false}
+          fullscreenControl={false}
           className="h-full w-full"
         >
           {Object.values(ROADS).map(road => (
@@ -128,7 +135,28 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
             </AdvancedMarker>
           ))}
         </Map>
-        <DistanceCalculator />
+        <div className="absolute top-4 left-4 z-10 w-full max-w-sm">
+          <Tabs defaultValue="distance" className="w-full">
+            <Card>
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="distance">
+                  <Route className="mr-2 h-4 w-4"/>
+                  Distance
+                </TabsTrigger>
+                <TabsTrigger value="radius">
+                  <CircleDot className="mr-2 h-4 w-4"/>
+                  Radius
+                </TabsTrigger>
+              </TabsList>
+            </Card>
+            <TabsContent value="distance">
+              <DistanceCalculator />
+            </TabsContent>
+            <TabsContent value="radius">
+              <RadiusCalculator />
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
     </APIProvider>
   );
