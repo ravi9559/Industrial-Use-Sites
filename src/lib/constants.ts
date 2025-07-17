@@ -116,5 +116,3 @@ export const AIRPORTS = {
     coords: { lat: 12.936792819008984, lng: 79.7428846962656 }
   }
 };
-
-    

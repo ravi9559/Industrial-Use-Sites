@@ -1,14 +1,15 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   APIProvider,
   Map,
   useMap,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS } from '@/lib/constants';
-import { Ship, Plane } from 'lucide-react';
+import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, CHENNAI_BENGALURU_EXPRESSWAY_COORDS } from '@/lib/constants';
+import { Ship, Plane, MapPin } from 'lucide-react';
+import { getPointsAtIntervals } from '@/lib/utils';
 
 type Point = {
   key: string;
@@ -42,6 +43,11 @@ const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[
 
 export default function InfraMap({ apiKey }: { apiKey: string }) {
   const mapId = 'a12a325a741369e5';
+  
+  const expresswayIntervalPoints = useMemo(() => 
+    getPointsAtIntervals(CHENNAI_BENGALURU_EXPRESSWAY_COORDS, 10, 100), 
+    []
+  );
 
   return (
     <APIProvider apiKey={apiKey}>
@@ -68,6 +74,13 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
             <AdvancedMarker key={airport.name} position={airport.coords}>
               <div className="p-2 bg-accent rounded-full shadow-lg">
                 <Plane className="h-6 w-6 text-accent-foreground" />
+              </div>
+            </AdvancedMarker>
+          ))}
+           {expresswayIntervalPoints.map((point, index) => (
+            <AdvancedMarker key={`nh48-pt-${index}`} position={point}>
+              <div className="p-1.5 bg-destructive rounded-full shadow-md">
+                <MapPin className="h-4 w-4 text-destructive-foreground" />
               </div>
             </AdvancedMarker>
           ))}
