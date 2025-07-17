@@ -1,4 +1,5 @@
 
+
 export const CHENNAI_OUTER_RING_ROAD_COORDS = [
     {"lat": 12.885371, "lng": 80.080709}, {"lat": 12.894909, "lng": 80.070581}, {"lat": 12.957484, "lng": 80.090322},
     {"lat": 12.990271, "lng": 80.089120}, {"lat": 12.996794, "lng": 80.087403}, {"lat": 13.017199, "lng": 80.095128},
@@ -128,4 +129,24 @@ export const AIRPORTS = {
     name: 'Chennai GreenField Airport-Parandur',
     coords: { lat: 12.936792819008984, lng: 79.7428846962656 }
   }
+};
+
+export const SIDCO_PARKS = {
+    'thirumazhisai': { name: 'SIDCO Industrial Estate, Thirumazhisai', coords: { lat: 13.0406428, lng: 80.05584019999999 }},
+    'kurichi': { name: 'SIDCO Industrial Estate, Kurichi', coords: { lat: 12.970577, lng: 80.0877137 }},
+    'kakkalur': { name: 'SIDCO Industrial Estate, Kakkalur', coords: { lat: 13.0019466, lng: 80.0029649 }},
+    'tirumudivakkam': { name: 'SIDCO Industrial Estate, Tirumudivakkam', coords: { lat: 12.9132556, lng: 79.9089872 }},
+    'ambattur': { name: 'SIDCO Industrial Estate, Ambattur', coords: { lat: 12.9203218, lng: 79.91468499999999 }},
+    'womens-thirumudivakkam': { name: 'SIDCO Womens Industrial Park, Thirumudivakkam', coords: { lat: 12.8680533, lng: 79.9553596 }},
+    'kappalur': { name: 'SIDCO Industrial Estate, Kappalur', coords: { lat: 12.9239597, lng: 79.8878215 }},
+    'ranipet': { name: 'SIDCO Industrial Estate, Ranipet', coords: { lat: 12.6529912, lng: 79.53806420000001 }},
+    'hosur': { name: 'SIDCO Industrial Estate, Hosur', coords: { lat: 12.9400532, lng: 79.5660181 }},
+    'villupuram': { name: 'SIDCO Industrial Estate, Villupuram', coords: { lat: 12.9692238, lng: 79.29914889999999 }},
+};
+
+export const SIPCOT_PARKS = {
+    'sriperumbudur': { name: 'SIPCOT Industrial Park, Sriperumbudur', coords: { lat: 13.0144557, lng: 80.2126109 }},
+    'oragadam': { name: 'SIPCOT Industrial Park, Oragadam', coords: { lat: 13.1047925, lng: 80.1990941 }},
+    'irungattukottai': { name: 'SIPCOT Industrial Park, Irungattukottai', coords: { lat: 13.109575, lng: 80.1679758 }},
+    'siruseri': { name: 'SIPCOT IT Park, Siruseri', coords: { lat: 13.0636495, lng: 80.2147026 }},
 };

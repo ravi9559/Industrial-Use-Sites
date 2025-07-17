@@ -8,8 +8,8 @@ import {
   useMap,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_CHITHOOR_EXPRESSWAY_COORDS } from '@/lib/constants';
-import { Ship, Plane } from 'lucide-react';
+import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, SIDCO_PARKS, SIPCOT_PARKS } from '@/lib/constants';
+import { Ship, Plane, Building2 } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
 
@@ -75,6 +75,20 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
             <AdvancedMarker key={airport.name} position={airport.coords}>
               <div className="p-2 bg-accent rounded-full shadow-lg">
                 <Plane className="h-6 w-6 text-accent-foreground" />
+              </div>
+            </AdvancedMarker>
+          ))}
+          {Object.values(SIDCO_PARKS).map(park => (
+            <AdvancedMarker key={park.name} position={park.coords}>
+              <div className="p-2 bg-green-500 rounded-full shadow-lg">
+                <Building2 className="h-6 w-6 text-white" />
+              </div>
+            </AdvancedMarker>
+          ))}
+          {Object.values(SIPCOT_PARKS).map(park => (
+            <AdvancedMarker key={park.name} position={park.coords}>
+              <div className="p-2 bg-orange-500 rounded-full shadow-lg">
+                <Building2 className="h-6 w-6 text-white" />
               </div>
             </AdvancedMarker>
           ))}
