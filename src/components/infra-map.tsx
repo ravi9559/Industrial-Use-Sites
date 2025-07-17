@@ -121,6 +121,11 @@ const InfraMapContent = () => {
         zoomControl={true}
         streetViewControl={false}
         mapTypeControl={true}
+        mapTypeControlOptions={{
+          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+          position: google.maps.ControlPosition.TOP_RIGHT,
+          mapTypeIds: ['roadmap', 'satellite'],
+        }}
         fullscreenControl={false}
         className="h-full w-full"
       >
