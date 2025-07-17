@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   APIProvider,
   Map,
   AdvancedMarker,
   InfoWindow,
-  Polyline,
+  useMap,
 } from '@vis.gl/react-google-maps';
 import { CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_CENTER } from '@/lib/constants';
 import { getInfrastructureDescription } from '@/app/actions';
@@ -24,6 +24,30 @@ const points: Point[] = CHENNAI_OUTER_RING_ROAD_COORDS.map((coord, index) => ({
   ...coord,
   key: `point-${index}`,
 }));
+
+const RoadPolyline = () => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map) return;
+
+    const polyline = new google.maps.Polyline({
+      path: CHENNAI_OUTER_RING_ROAD_COORDS,
+      geodesic: true,
+      strokeColor: "hsl(var(--primary))",
+      strokeOpacity: 0.9,
+      strokeWeight: 6,
+    });
+
+    polyline.setMap(map);
+
+    return () => {
+      polyline.setMap(null);
+    };
+  }, [map]);
+
+  return null;
+}
 
 export default function InfraMap({ apiKey }: { apiKey: string }) {
   const [selectedPoint, setSelectedPoint] = useState<Point | null>(null);
@@ -70,13 +94,7 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
         disableDefaultUI={true}
         className="h-full w-full"
       >
-        <Polyline
-          path={CHENNAI_OUTER_RING_ROAD_COORDS}
-          strokeColor="hsl(var(--primary))"
-          strokeOpacity={0.9}
-          strokeWeight={6}
-          geodesic={true}
-        />
+        <RoadPolyline />
 
         {points.map((point) => (
           <AdvancedMarker
