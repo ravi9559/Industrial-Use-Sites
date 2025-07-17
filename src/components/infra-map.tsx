@@ -102,34 +102,34 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           ))}
           {Object.values(PORTS).map(port => (
             <AdvancedMarker key={port.name} position={port.coords}>
-              <div className="p-2 bg-primary rounded-full shadow-lg">
-                <Ship className="h-6 w-6 text-primary-foreground" />
+              <div className="p-2 bg-blue-500 text-white rounded-full shadow-lg">
+                <Ship className="h-6 w-6" />
               </div>
             </AdvancedMarker>
           ))}
           {Object.values(AIRPORTS).map(airport => (
             <AdvancedMarker key={airport.name} position={airport.coords}>
-              <div className="p-2 bg-accent rounded-full shadow-lg">
-                <Plane className="h-6 w-6 text-accent-foreground" />
+              <div className="p-2 bg-teal-500 text-white rounded-full shadow-lg">
+                <Plane className="h-6 w-6" />
               </div>
             </AdvancedMarker>
           ))}
           {Object.values(SIDCO_PARKS).map(park => (
-            <ParkMarker key={park.name} park={park} color="bg-green-500" />
+            <ParkMarker key={park.name} park={park} color="bg-indigo-500" />
           ))}
           {Object.values(SIPCOT_PARKS).map(park => (
-            <ParkMarker key={park.name} park={park} color="bg-orange-500" />
+            <ParkMarker key={park.name} park={park} color="bg-purple-500" />
           ))}
            {expresswayIntervalPoints.map((point, index) => (
             <AdvancedMarker key={`nh48-pt-${index}`} position={point}>
-              <div className="flex items-center justify-center h-8 w-8 bg-destructive text-destructive-foreground rounded-full shadow-md text-xs font-bold">
+              <div className="flex items-center justify-center h-8 w-8 bg-red-600 text-white rounded-full shadow-md text-xs font-bold">
                 {point.distance}
               </div>
             </AdvancedMarker>
           ))}
           {chithoorExpresswayIntervalPoints.map((point, index) => (
             <AdvancedMarker key={`nh38-pt-${index}`} position={point}>
-              <div className="flex items-center justify-center h-8 w-8 bg-destructive text-destructive-foreground rounded-full shadow-md text-xs font-bold">
+              <div className="flex items-center justify-center h-8 w-8 bg-red-600 text-white rounded-full shadow-md text-xs font-bold">
                 {point.distance}
               </div>
             </AdvancedMarker>
