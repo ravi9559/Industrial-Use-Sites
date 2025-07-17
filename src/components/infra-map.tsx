@@ -13,7 +13,6 @@ import { getInfrastructureDescription } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Skeleton } from './ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 type Point = {
   key: string;
@@ -21,9 +20,7 @@ type Point = {
   lng: number;
 };
 
-type RoadId = keyof typeof ROADS;
-
-const RoadPolyline = ({ coords }: { coords: { lat: number, lng: number }[] }) => {
+const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[], color: string }) => {
   const map = useMap();
 
   useEffect(() => {
@@ -32,7 +29,7 @@ const RoadPolyline = ({ coords }: { coords: { lat: number, lng: number }[] }) =>
     const polyline = new google.maps.Polyline({
       path: coords,
       geodesic: true,
-      strokeColor: "hsl(var(--primary))",
+      strokeColor: color,
       strokeOpacity: 0.9,
       strokeWeight: 6,
     });
@@ -42,49 +39,25 @@ const RoadPolyline = ({ coords }: { coords: { lat: number, lng: number }[] }) =>
     return () => {
       polyline.setMap(null);
     };
-  }, [map, coords]);
+  }, [map, coords, color]);
 
   return null;
 }
 
-const RoadSelector = ({
-  selectedRoad,
-  onRoadChange,
-}: {
-  selectedRoad: RoadId;
-  onRoadChange: (roadId: RoadId) => void;
-}) => {
-  return (
-    <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-72">
-      <Select value={selectedRoad} onValueChange={(value) => onRoadChange(value as RoadId)}>
-        <SelectTrigger>
-          <SelectValue placeholder="Select a road" />
-        </SelectTrigger>
-        <SelectContent>
-          {Object.entries(ROADS).map(([id, road]) => (
-            <SelectItem key={id} value={id}>
-              {road.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
-  );
-};
-
 export default function InfraMap({ apiKey }: { apiKey: string }) {
-  const [selectedRoad, setSelectedRoad] = useState<RoadId>('chennai-outer-ring-road');
   const [selectedPoint, setSelectedPoint] = useState<Point | null>(null);
   const [description, setDescription] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
 
   const points = useMemo(() => {
-    return ROADS[selectedRoad].coords.map((coord, index) => ({
-      ...coord,
-      key: `${selectedRoad}-point-${index}`,
-    }));
-  }, [selectedRoad]);
+    return Object.entries(ROADS).flatMap(([roadId, roadData]) => 
+      roadData.coords.map((coord, index) => ({
+        ...coord,
+        key: `${roadId}-point-${index}`,
+      }))
+    );
+  }, []);
 
   const handleMarkerClick = useCallback(async (point: Point) => {
     if (selectedPoint?.key === point.key) {
@@ -112,11 +85,6 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
   const handleInfoWindowClose = useCallback(() => {
     setSelectedPoint(null);
   }, []);
-
-  const handleRoadChange = (roadId: RoadId) => {
-    setSelectedRoad(roadId);
-    setSelectedPoint(null);
-  };
   
   const mapId = 'a12a325a741369e5';
 
@@ -131,7 +99,9 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           disableDefaultUI={true}
           className="h-full w-full"
         >
-          <RoadPolyline coords={ROADS[selectedRoad].coords} />
+          {Object.values(ROADS).map(road => (
+            <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
+          ))}
 
           {points.map((point) => (
             <AdvancedMarker
@@ -171,7 +141,6 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
             </InfoWindow>
           )}
         </Map>
-        <RoadSelector selectedRoad={selectedRoad} onRoadChange={handleRoadChange} />
       </div>
     </APIProvider>
   );

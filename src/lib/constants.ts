@@ -28,9 +28,11 @@ export const ROADS = {
   'chennai-outer-ring-road': {
     name: 'Chennai Outer Ring Road',
     coords: CHENNAI_OUTER_RING_ROAD_COORDS,
+    color: "hsl(var(--primary))",
   },
   'chennai-peripheral-ring-road': {
     name: 'CPRR-Chennai Peripheral Ring Road',
     coords: CHENNAI_PERIPHERAL_RING_ROAD_COORDS,
+    color: "hsl(var(--accent))",
   },
 };
