@@ -14,6 +14,7 @@ import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { DistanceCalculator } from './distance-calculator';
 
 const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[], color: string }) => {
   const map = useMap();
@@ -79,7 +80,7 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
   );
 
   return (
-    <APIProvider apiKey={apiKey}>
+    <APIProvider apiKey={apiKey} libraries={['places', 'routes']}>
       <div className="relative h-full w-full">
         <Map
           defaultCenter={CHENNAI_CENTER}
@@ -127,6 +128,7 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
             </AdvancedMarker>
           ))}
         </Map>
+        <DistanceCalculator />
       </div>
     </APIProvider>
   );
