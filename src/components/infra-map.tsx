@@ -6,6 +6,7 @@ import {
   APIProvider,
   Map,
   useMap,
+  useMapsLibrary,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
 import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS } from '@/lib/constants';
@@ -69,9 +70,10 @@ const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: numb
     );
   };
 
-export default function InfraMap({ apiKey }: { apiKey: string }) {
-  const mapId = 'a12a325a741369e5';
-  
+const InfraMapContent = () => {
+  const geometry = useMapsLibrary('geometry');
+  const [nh48_100km_coords, setNh48_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
+
   const nh48IntervalPoints: IntervalPoint[] = useMemo(() =>
     getPointsAtIntervals(NH48_CHENNAI_KRISHNAGIRI_COORDS, 10, 100),
     []
@@ -81,126 +83,134 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     getPointsAtIntervals(NH32_CHENNAI_TRICHY_COORDS, 10, 100),
     []
   );
+  
+  useEffect(() => {
+    if (!geometry || nh48IntervalPoints.length === 0) {
+      return;
+    }
 
-  const nh48_100km_coords = useMemo(() => {
-    if (nh48IntervalPoints.length === 0) return [];
     const lastPoint = nh48IntervalPoints[nh48IntervalPoints.length - 1];
     const coords = [];
-    let totalDistance = 0;
     for(let i = 0; i < NH48_CHENNAI_KRISHNAGIRI_COORDS.length - 1; i++) {
         coords.push(NH48_CHENNAI_KRISHNAGIRI_COORDS[i]);
         if (NH48_CHENNAI_KRISHNAGIRI_COORDS[i].lat === lastPoint.lat && NH48_CHENNAI_KRISHNAGIRI_COORDS[i].lng === lastPoint.lng) {
             break;
         }
-        // A rough approximation to find the segment where the 100km point lies
-        if (google.maps.geometry) {
-           const dist = google.maps.geometry.spherical.computeDistanceBetween(
-                new google.maps.LatLng(NH48_CHENNAI_KRISHNAGIRI_COORDS[0]),
-                new google.maps.LatLng(NH48_CHENNAI_KRISHNAGIRI_COORDS[i+1])
-            ) / 1000;
-            if (dist > 100) {
-                 coords.push(NH48_CHENNAI_KRISHNAGIRI_COORDS[i+1]);
-                 break;
-            }
+        
+        const dist = geometry.spherical.computeDistanceBetween(
+            new google.maps.LatLng(NH48_CHENNAI_KRISHNAGIRI_COORDS[0]),
+            new google.maps.LatLng(NH48_CHENNAI_KRISHNAGIRI_COORDS[i+1])
+        ) / 1000;
+        if (dist > 100) {
+             coords.push(NH48_CHENNAI_KRISHNAGIRI_COORDS[i+1]);
+             break;
         }
     }
-     // Add the last point precisely
     coords.push(lastPoint);
-    return coords;
-  }, [nh48IntervalPoints]);
-  
-  const [polylines, setPolylines] = useState<{ [key: string]: google.maps.Polyline }>({});
+    setNh48_100km_coords(coords);
 
+  }, [geometry, nh48IntervalPoints]);
+
+
+  return (
+    <>
+      <Map
+        defaultCenter={CHENNAI_CENTER}
+        defaultZoom={10}
+        mapId={'a12a325a741369e5'}
+        gestureHandling={'greedy'}
+        disableDefaultUI={false}
+        zoomControl={true}
+        streetViewControl={false}
+        mapTypeControl={false}
+        fullscreenControl={false}
+        className="h-full w-full"
+      >
+        {nh48_100km_coords.length > 0 && <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={8} />}
+        <RoadPolyline coords={NH32_CHENNAI_TRICHY_COORDS} color={"#3498DB"} />
+        {Object.values(ROADS).map(road => (
+          <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
+        ))}
+        {Object.values(PORTS).map(port => (
+          <AdvancedMarker key={port.name} position={port.coords}>
+            <div className="p-2 bg-blue-500 text-white rounded-full shadow-lg">
+              <Ship className="h-6 w-6" />
+            </div>
+          </AdvancedMarker>
+        ))}
+        {Object.values(AIRPORTS).map(airport => (
+          <AdvancedMarker key={airport.name} position={airport.coords}>
+            <div className="p-2 bg-teal-500 text-white rounded-full shadow-lg">
+              <Plane className="h-6 w-6" />
+            </div>
+          </AdvancedMarker>
+        ))}
+        {Object.values(SIDCO_PARKS).map(park => (
+          <ParkMarker key={park.name} park={park} color="bg-indigo-500" />
+        ))}
+        {Object.values(SIPCOT_PARKS).map(park => (
+          <ParkMarker key={park.name} park={park} color="bg-purple-500" />
+        ))}
+        {nh48IntervalPoints.map((point, index) => (
+          <AdvancedMarker key={`nh48-ck-pt-${index}`} position={point}>
+            <div className="flex items-center justify-center h-8 w-8 bg-orange-600 text-white rounded-full shadow-md text-xs font-bold">
+              {point.distance}
+            </div>
+          </AdvancedMarker>
+        ))}
+        {nh32IntervalPoints.map((point, index) => (
+          <AdvancedMarker key={`nh32-ct-pt-${index}`} position={point}>
+            <div className="flex items-center justify-center h-8 w-8 bg-blue-600 text-white rounded-full shadow-md text-xs font-bold">
+              {point.distance}
+            </div>
+          </AdvancedMarker>
+        ))}
+      </Map>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
+        <h2 className="text-3xl font-light text-foreground/30 whitespace-nowrap select-none">
+          Lakshmi Balaji <b className="font-bold">O2O</b>
+        </h2>
+      </div>
+      <div className="absolute top-4 left-4 z-10 w-full max-w-sm">
+         <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg">
+          <AccordionItem value="distance" className="border-b-0">
+              <Card>
+                  <AccordionTrigger className="p-4 w-full">
+                      <div className="flex items-center gap-2 text-lg font-semibold">
+                          <Route className="h-6 w-6 text-primary" />
+                          <span>Distance Calculator</span>
+                      </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                      <DistanceCalculator />
+                  </AccordionContent>
+              </Card>
+          </AccordionItem>
+          <AccordionItem value="radius" className="border-b-0">
+               <Card className="mt-2">
+                  <AccordionTrigger className="p-4 w-full">
+                       <div className="flex items-center gap-2 text-lg font-semibold">
+                          <CircleDot className="h-6 w-6 text-primary" />
+                          <span>Circle Radius</span>
+                      </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                      <RadiusCalculator />
+                  </AccordionContent>
+              </Card>
+          </AccordionItem>
+        </Accordion>
+      </div>
+    </>
+  );
+};
+
+
+export default function InfraMap({ apiKey }: { apiKey: string }) {
   return (
     <APIProvider apiKey={apiKey} libraries={['places', 'routes', 'geometry']}>
       <div className="relative h-full w-full">
-        <Map
-          defaultCenter={CHENNAI_CENTER}
-          defaultZoom={10}
-          mapId={mapId}
-          gestureHandling={'greedy'}
-          disableDefaultUI={false}
-          zoomControl={true}
-          streetViewControl={false}
-          mapTypeControl={false}
-          fullscreenControl={false}
-          className="h-full w-full"
-        >
-          <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={8} />
-          <RoadPolyline coords={NH32_CHENNAI_TRICHY_COORDS} color={"#3498DB"} />
-          {Object.values(ROADS).map(road => (
-            <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
-          ))}
-          {Object.values(PORTS).map(port => (
-            <AdvancedMarker key={port.name} position={port.coords}>
-              <div className="p-2 bg-blue-500 text-white rounded-full shadow-lg">
-                <Ship className="h-6 w-6" />
-              </div>
-            </AdvancedMarker>
-          ))}
-          {Object.values(AIRPORTS).map(airport => (
-            <AdvancedMarker key={airport.name} position={airport.coords}>
-              <div className="p-2 bg-teal-500 text-white rounded-full shadow-lg">
-                <Plane className="h-6 w-6" />
-              </div>
-            </AdvancedMarker>
-          ))}
-          {Object.values(SIDCO_PARKS).map(park => (
-            <ParkMarker key={park.name} park={park} color="bg-indigo-500" />
-          ))}
-          {Object.values(SIPCOT_PARKS).map(park => (
-            <ParkMarker key={park.name} park={park} color="bg-purple-500" />
-          ))}
-          {nh48IntervalPoints.map((point, index) => (
-            <AdvancedMarker key={`nh48-ck-pt-${index}`} position={point}>
-              <div className="flex items-center justify-center h-8 w-8 bg-orange-600 text-white rounded-full shadow-md text-xs font-bold">
-                {point.distance}
-              </div>
-            </AdvancedMarker>
-          ))}
-          {nh32IntervalPoints.map((point, index) => (
-            <AdvancedMarker key={`nh32-ct-pt-${index}`} position={point}>
-              <div className="flex items-center justify-center h-8 w-8 bg-blue-600 text-white rounded-full shadow-md text-xs font-bold">
-                {point.distance}
-              </div>
-            </AdvancedMarker>
-          ))}
-        </Map>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
-          <h2 className="text-3xl font-light text-foreground/30 whitespace-nowrap select-none">
-            Lakshmi Balaji <b className="font-bold">O2O</b>
-          </h2>
-        </div>
-        <div className="absolute top-4 left-4 z-10 w-full max-w-sm">
-           <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg">
-            <AccordionItem value="distance" className="border-b-0">
-                <Card>
-                    <AccordionTrigger className="p-4 w-full">
-                        <div className="flex items-center gap-2 text-lg font-semibold">
-                            <Route className="h-6 w-6 text-primary" />
-                            <span>Distance Calculator</span>
-                        </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                        <DistanceCalculator />
-                    </AccordionContent>
-                </Card>
-            </AccordionItem>
-            <AccordionItem value="radius" className="border-b-0">
-                 <Card className="mt-2">
-                    <AccordionTrigger className="p-4 w-full">
-                         <div className="flex items-center gap-2 text-lg font-semibold">
-                            <CircleDot className="h-6 w-6 text-primary" />
-                            <span>Circle Radius</span>
-                        </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                        <RadiusCalculator />
-                    </AccordionContent>
-                </Card>
-            </AccordionItem>
-          </Accordion>
-        </div>
+        <InfraMapContent />
       </div>
     </APIProvider>
   );
