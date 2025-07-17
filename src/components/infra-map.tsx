@@ -190,11 +190,6 @@ const InfraMapContent = () => {
         ))}
 
       </Map>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
-        <h2 className="text-3xl font-light text-foreground/30 whitespace-nowrap select-none">
-          Lakshmi Balaji <b className="font-bold">O2O</b>
-        </h2>
-      </div>
       <div className="absolute top-4 left-4 z-10 w-full max-w-sm">
          <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg">
           <AccordionItem value="distance" className="border-b-0">

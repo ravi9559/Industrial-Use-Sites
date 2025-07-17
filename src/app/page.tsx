@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
 import InfraMap from '@/components/infra-map';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertCircle } from 'lucide-react';
@@ -25,9 +26,9 @@ export default function Home() {
   }
 
   return (
-    <div className="h-dvh w-screen">
+    <div className="h-dvh w-screen flex flex-col">
       <Header />
-      <main className="pt-16 h-full w-full">
+      <main className="flex-grow pt-16 h-full w-full">
         {apiKey ? (
           <InfraMap apiKey={apiKey} />
         ) : (
@@ -53,6 +54,7 @@ export default function Home() {
             </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }
