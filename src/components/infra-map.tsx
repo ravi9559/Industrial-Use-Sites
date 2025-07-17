@@ -8,14 +8,9 @@ import {
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
 import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, CHENNAI_BENGALURU_EXPRESSWAY_COORDS } from '@/lib/constants';
-import { Ship, Plane, MapPin } from 'lucide-react';
+import { Ship, Plane } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
-
-type Point = {
-  key: string;
-  lat: number;
-  lng: number;
-};
+import type { IntervalPoint } from '@/lib/utils';
 
 const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[], color: string }) => {
   const map = useMap();
@@ -44,7 +39,7 @@ const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[
 export default function InfraMap({ apiKey }: { apiKey: string }) {
   const mapId = 'a12a325a741369e5';
   
-  const expresswayIntervalPoints = useMemo(() => 
+  const expresswayIntervalPoints: IntervalPoint[] = useMemo(() => 
     getPointsAtIntervals(CHENNAI_BENGALURU_EXPRESSWAY_COORDS, 10, 100), 
     []
   );
@@ -79,8 +74,8 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           ))}
            {expresswayIntervalPoints.map((point, index) => (
             <AdvancedMarker key={`nh48-pt-${index}`} position={point}>
-              <div className="p-1.5 bg-destructive rounded-full shadow-md">
-                <MapPin className="h-4 w-4 text-destructive-foreground" />
+              <div className="flex items-center justify-center h-8 w-8 bg-destructive text-destructive-foreground rounded-full shadow-md text-xs font-bold">
+                {point.distance}
               </div>
             </AdvancedMarker>
           ))}

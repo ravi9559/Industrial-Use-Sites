@@ -6,6 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 type Coord = { lat: number; lng: number };
+export type IntervalPoint = Coord & { distance: number };
+
 
 // Haversine distance formula
 function getDistance(coord1: Coord, coord2: Coord): number {
@@ -23,8 +25,8 @@ function getDistance(coord1: Coord, coord2: Coord): number {
 }
 
 // Function to get points at intervals along a polyline
-export function getPointsAtIntervals(coords: Coord[], intervalKm: number, maxDistanceKm: number): Coord[] {
-  const points = [];
+export function getPointsAtIntervals(coords: Coord[], intervalKm: number, maxDistanceKm: number): IntervalPoint[] {
+  const points: IntervalPoint[] = [];
   let distanceTraveled = 0;
   let nextInterval = intervalKm;
 
@@ -41,7 +43,7 @@ export function getPointsAtIntervals(coords: Coord[], intervalKm: number, maxDis
       const fraction = (nextInterval - distanceTraveled) / segmentDistance;
       const lat = start.lat + (end.lat - start.lat) * fraction;
       const lng = start.lng + (end.lng - start.lng) * fraction;
-      points.push({ lat, lng });
+      points.push({ lat, lng, distance: nextInterval });
 
       nextInterval += intervalKm;
     }
