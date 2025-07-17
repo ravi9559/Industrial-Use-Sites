@@ -9,7 +9,7 @@ import {
   useMapsLibrary,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS } from '@/lib/constants';
+import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS } from '@/lib/constants';
 import { Ship, Plane, Building2 } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
@@ -79,11 +79,6 @@ const InfraMapContent = () => {
     []
   );
 
-  const nh32IntervalPoints: IntervalPoint[] = useMemo(() =>
-    getPointsAtIntervals(NH32_CHENNAI_TRICHY_COORDS, 10, 100),
-    []
-  );
-  
   useEffect(() => {
     if (!geometry || nh48IntervalPoints.length === 0) {
       return;
@@ -134,7 +129,6 @@ const InfraMapContent = () => {
         className="h-full w-full"
       >
         {nh48_100km_coords.length > 0 && <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
-        <RoadPolyline coords={NH32_CHENNAI_TRICHY_COORDS} color={"#3498DB"} />
         {Object.values(ROADS).map(road => (
           <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
         ))}
@@ -161,13 +155,6 @@ const InfraMapContent = () => {
         {nh48IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh48-ck-pt-${index}`} position={point}>
             <div className="flex items-center justify-center h-8 w-8 bg-orange-600 text-white rounded-full shadow-md text-xs font-bold">
-              {point.distance}
-            </div>
-          </AdvancedMarker>
-        ))}
-        {nh32IntervalPoints.map((point, index) => (
-          <AdvancedMarker key={`nh32-ct-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-8 w-8 bg-blue-600 text-white rounded-full shadow-md text-xs font-bold">
               {point.distance}
             </div>
           </AdvancedMarker>
