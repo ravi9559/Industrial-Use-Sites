@@ -1,3 +1,4 @@
+
 export const CHENNAI_OUTER_RING_ROAD_COORDS = [
     {"lat": 12.885371, "lng": 80.080709}, {"lat": 12.894909, "lng": 80.070581}, {"lat": 12.957484, "lng": 80.090322},
     {"lat": 12.990271, "lng": 80.089120}, {"lat": 12.996794, "lng": 80.087403}, {"lat": 13.017199, "lng": 80.095128},
@@ -98,6 +99,10 @@ export const PORTS = {
   'adani-kattupalli-port': {
     name: 'Adani Kattupalli Port',
     coords: { lat: 13.312549338380755, lng: 80.3405114393525 }
+  },
+  'krishnapatnam-port': {
+    name: 'Krishnapatnam Port',
+    coords: { lat: 14.252454855645645, lng: 80.1215271393719 }
   }
 };
 
@@ -111,3 +116,5 @@ export const AIRPORTS = {
     coords: { lat: 12.936792819008984, lng: 79.7428846962656 }
   }
 };
+
+    
