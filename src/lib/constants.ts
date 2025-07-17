@@ -62,6 +62,14 @@ export const CHENNAI_CHITHOOR_EXPRESSWAY_COORDS = [
     {"lat": 13.162936, "lng": 79.121239}, {"lat": 13.144465, "lng": 79.076608}
 ];
 
+export const NEW_ROUTE_COORDS = [
+    {lat: 13.0144557, lng: 80.2126109}, {lat: 13.1047925, lng: 80.1990941}, {lat: 13.109575, lng: 80.1679758},
+    {lat: 13.0636495, lng: 80.2147026}, {lat: 13.0406428, lng: 80.05584019999999}, {lat: 12.970577, lng: 80.0877137},
+    {lat: 13.0019466, lng: 80.0029649}, {lat: 12.9132556, lng: 79.9089872}, {lat: 12.9203218, lng: 79.91468499999999},
+    {lat: 12.8680533, lng: 79.9553596}, {lat: 12.9239597, lng: 79.8878215}, {lat: 12.6529912, lng: 79.53806420000001},
+    {lat: 12.9400532, lng: 79.5660181}, {lat: 12.9692238, lng: 79.29914889999999}
+];
+
 export const CHENNAI_CENTER = {lat: 13.0827, lng: 80.2707};
 
 export const ROADS = {
@@ -84,6 +92,11 @@ export const ROADS = {
     name: 'Chennai-Chithoor ExpressWay',
     coords: CHENNAI_CHITHOOR_EXPRESSWAY_COORDS,
     color: "hsl(43 74% 66%)",
+  },
+  'new-route': {
+    name: 'New Route',
+    coords: NEW_ROUTE_COORDS,
+    color: "hsl(12 76% 61%)",
   }
 };
 
