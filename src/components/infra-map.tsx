@@ -1,10 +1,9 @@
 'use client';
 
-import { useMemo, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   APIProvider,
   Map,
-  AdvancedMarker,
   useMap,
 } from '@vis.gl/react-google-maps';
 import { ROADS, CHENNAI_CENTER } from '@/lib/constants';
@@ -40,15 +39,6 @@ const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[
 }
 
 export default function InfraMap({ apiKey }: { apiKey: string }) {
-  const points = useMemo(() => {
-    return Object.entries(ROADS).flatMap(([roadId, roadData]) => 
-      roadData.coords.map((coord, index) => ({
-        ...coord,
-        key: `${roadId}-point-${index}`,
-      }))
-    );
-  }, []);
-  
   const mapId = 'a12a325a741369e5';
 
   return (
@@ -64,15 +54,6 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
         >
           {Object.values(ROADS).map(road => (
             <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
-          ))}
-
-          {points.map((point) => (
-            <AdvancedMarker
-              key={point.key}
-              position={point}
-            >
-              <div className="w-4 h-4 rounded-full bg-accent border-2 border-accent-foreground/80 shadow-md cursor-pointer transition-transform hover:scale-125" />
-            </AdvancedMarker>
           ))}
         </Map>
       </div>
