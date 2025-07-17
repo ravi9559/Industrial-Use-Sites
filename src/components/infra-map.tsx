@@ -99,7 +99,6 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           fullscreenControl={false}
           className="h-full w-full"
         >
-          <RoadPolyline coords={NH48_CHENNAI_KRISHNAGIRI_COORDS} color={"#FF5733"} />
           <RoadPolyline coords={NH32_CHENNAI_TRICHY_COORDS} color={"#3498DB"} />
           {Object.values(ROADS).map(road => (
             <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
