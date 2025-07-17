@@ -1,12 +1,26 @@
 
 
+export const NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS = [
+    {"lat": 12.974441, "lng": 79.940561}, {"lat": 12.986664, "lng": 79.914182}, {"lat": 13.003887, "lng": 79.882747},
+    {"lat": 13.030554, "lng": 79.842752}, {"lat": 13.056109, "lng": 79.808381}, {"lat": 13.085831, "lng": 79.770101},
+    {"lat": 13.111110, "lng": 79.739722}, {"lat": 13.136109, "lng": 79.704719}, {"lat": 13.161108, "lng": 79.668049},
+    {"lat": 13.186942, "lng": 79.630276}, {"lat": 13.208608, "lng": 79.596941}, {"lat": 13.230275, "lng": 79.562775},
+    {"lat": 13.251941, "lng": 79.529440}, {"lat": 13.272775, "lng": 79.496942}, {"lat": 13.292499, "lng": 79.465554},
+    {"lat": 13.311387, "lng": 79.435276}, {"lat": 13.329442, "lng": 79.405832}, {"lat": 13.346664, "lng": 79.377498},
+    {"lat": 13.362775, "lng": 79.350276}, {"lat": 13.378054, "lng": 79.323888}, {"lat": 13.392220, "lng": 79.298610},
+    {"lat": 13.405554, "lng": 79.274165}, {"lat": 13.418054, "lng": 79.250554}, {"lat": 13.429720, "lng": 79.227776},
+    {"lat": 13.440554, "lng": 79.205832}, {"lat": 13.450554, "lng": 79.184721}, {"lat": 13.459720, "lng": 79.164443}
+];
 
-
-
-
-
-
-
+export const CHENNAI_CHITHOOR_EXPRESSWAY_COORDS = [
+    {"lat": 13.176395, "lng": 79.945892}, {"lat": 13.181669, "lng": 79.914783}, {"lat": 13.186669, "lng": 79.883948},
+    {"lat": 13.191114, "lng": 79.853393}, {"lat": 13.195281, "lng": 79.823115}, {"lat": 13.199170, "lng": 79.793116},
+    {"lat": 13.202781, "lng": 79.763395}, {"lat": 13.206114, "lng": 79.733950}, {"lat": 13.209170, "lng": 79.704782},
+    {"lat": 13.211948, "lng": 79.675893}, {"lat": 13.214448, "lng": 79.647281}, {"lat": 13.216669, "lng": 79.618949},
+    {"lat": 13.218614, "lng": 79.590894}, {"lat": 13.220281, "lng": 79.563116}, {"lat": 13.221669, "lng": 79.535616},
+    {"lat": 13.222781, "lng": 79.508394}, {"lat": 13.223614, "lng": 79.481450}, {"lat": 13.224170, "lng": 79.454782},
+    {"lat": 13.224448, "lng": 79.428394}, {"lat": 13.224448, "lng": 79.402281}, {"lat": 13.224170, "lng": 79.376449}
+];
 
 export const CHENNAI_OUTER_RING_ROAD_COORDS = [
     {"lat": 12.885371, "lng": 80.080709}, {"lat": 12.894909, "lng": 80.070581}, {"lat": 12.957484, "lng": 80.090322},
@@ -127,6 +141,16 @@ export const ROADS = {
     name: 'CPRR-Chennai Peripheral Ring Road',
     coords: CHENNAI_PERIPHERAL_RING_ROAD_COORDS,
     color: "hsl(244 98% 73%)",
+  },
+  'ne7-chennai-bengaluru-expressway': {
+    name: 'NE7 Chennai-Bengaluru Expressway',
+    coords: NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS,
+    color: "hsl(300 98% 73%)",
+  },
+  'chennai-chithoor-expressway': {
+    name: 'Chennai-Chithoor Expressway',
+    coords: CHENNAI_CHITHOOR_EXPRESSWAY_COORDS,
+    color: "hsl(60 98% 73%)",
   }
 };
 

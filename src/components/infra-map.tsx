@@ -95,6 +95,7 @@ const InfraMapContent = () => {
     if (!geometry) return;
 
     const calculate100kmPath = (sourceCoords: {lat: number, lng: number}[]) => {
+        if (!sourceCoords || sourceCoords.length === 0) return [];
         const coords = [];
         let totalDistance = 0;
         for(let i = 0; i < sourceCoords.length - 1; i++) {
