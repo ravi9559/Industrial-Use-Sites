@@ -9,7 +9,7 @@ import {
   useMapsLibrary,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { ROADS, CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS } from '@/lib/constants';
+import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS } from '@/lib/constants';
 import { Ship, Plane, Building2 } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
@@ -136,14 +136,14 @@ const InfraMapContent = () => {
         disableDefaultUI={false}
         zoomControl={true}
         streetViewControl={false}
-        mapTypeControl={false}
+        mapTypeControl={true}
         fullscreenControl={false}
         className="h-full w-full"
       >
-        <RoadPolyline key={ROADS['chennai-outer-ring-road'].name} coords={ROADS['chennai-outer-ring-road'].coords} color={ROADS['chennai-outer-ring-road'].color} />
-        <RoadPolyline key={ROADS['chennai-peripheral-ring-road'].name} coords={ROADS['chennai-peripheral-ring-road'].coords} color={ROADS['chennai-peripheral-ring-road'].color} />
-        <RoadPolyline key={ROADS['ne7-chennai-bengaluru-expressway'].name} coords={ROADS['ne7-chennai-bengaluru-expressway'].coords} color={ROADS['ne7-chennai-bengaluru-expressway'].color} />
-        <RoadPolyline key={ROADS['chennai-chithoor-expressway'].name} coords={ROADS['chennai-chithoor-expressway'].coords} color={ROADS['chennai-chithoor-expressway'].color} />
+        <RoadPolyline coords={CHENNAI_OUTER_RING_ROAD_COORDS} color={"hsl(208 98% 73%)"} />
+        <RoadPolyline coords={CHENNAI_PERIPHERAL_RING_ROAD_COORDS} color={"hsl(244 98% 73%)"} />
+        <RoadPolyline coords={NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS} color={"hsl(300 98% 73%)"} />
+        <RoadPolyline coords={CHENNAI_CHITHOOR_EXPRESSWAY_COORDS} color={"hsl(60 98% 73%)"} />
         
         {nh48_100km_coords.length > 0 && <RoadPolyline coords={nh48_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
         {nh32_100km_coords.length > 0 && <RoadPolyline coords={nh32_100km_coords} color={"#808080"} opacity={0.6} weight={2} />}
