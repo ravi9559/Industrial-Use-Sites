@@ -77,7 +77,7 @@ const InfraMapContent = () => {
   );
 
   useEffect(() => {
-    if (!geometry) return;
+    if (!geometry || typeof google === 'undefined' || !google.maps) return;
 
     const calculate100kmPath = (sourceCoords: {lat: number, lng: number}[]) => {
         if (!sourceCoords || sourceCoords.length === 0) return [];
@@ -125,7 +125,6 @@ const InfraMapContent = () => {
       <Map
         defaultCenter={CHENNAI_CENTER}
         defaultZoom={10}
-        mapId={'a12a325a741369e5'}
         gestureHandling={'greedy'}
         disableDefaultUI={false}
         zoomControl={true}
