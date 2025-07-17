@@ -2,6 +2,7 @@
 
 
 
+
 export const CHENNAI_OUTER_RING_ROAD_COORDS = [
     {"lat": 12.885371, "lng": 80.080709}, {"lat": 12.894909, "lng": 80.070581}, {"lat": 12.957484, "lng": 80.090322},
     {"lat": 12.990271, "lng": 80.089120}, {"lat": 12.996794, "lng": 80.087403}, {"lat": 13.017199, "lng": 80.095128},
@@ -120,16 +121,6 @@ export const ROADS = {
     name: 'Chennai-Chithoor ExpressWay',
     coords: CHENNAI_CHITHOOR_EXPRESSWAY_COORDS,
     color: "hsl(43 74% 66%)",
-  },
-   'nh-48-chennai-krishnagiri': {
-    name: 'NH 48 Chennai-Krishnagiri',
-    coords: NH48_CHENNAI_KRISHNAGIRI_COORDS,
-    color: "#FF5733"
-  },
-  'nh-32-chennai-trichy': {
-    name: 'NH 32 Chennai-Trichy',
-    coords: NH32_CHENNAI_TRICHY_COORDS,
-    color: "#3498DB"
   }
 };
 

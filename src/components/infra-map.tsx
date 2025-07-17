@@ -24,19 +24,19 @@ const RoadPolyline = ({ coords, color }: { coords: { lat: number, lng: number }[
 
   useEffect(() => {
     if (!map) return;
-
-    const polyline = new google.maps.Polyline({
-      path: coords,
-      geodesic: true,
-      strokeColor: color,
-      strokeOpacity: 0.9,
-      strokeWeight: 6,
+    
+    const roadPath = new google.maps.Polyline({
+        path: coords,
+        geodesic: true,
+        strokeColor: color,
+        strokeOpacity: 0.9,
+        strokeWeight: 6,
     });
-
-    polyline.setMap(map);
+    
+    roadPath.setMap(map);
 
     return () => {
-      polyline.setMap(null);
+      roadPath.setMap(null);
     };
   }, [map, coords, color]);
 
@@ -81,6 +81,8 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     getPointsAtIntervals(NH32_CHENNAI_TRICHY_COORDS, 10, 100),
     []
   );
+  
+  const [polylines, setPolylines] = useState<{ [key: string]: google.maps.Polyline }>({});
 
   return (
     <APIProvider apiKey={apiKey} libraries={['places', 'routes', 'geometry']}>
@@ -97,6 +99,8 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
           fullscreenControl={false}
           className="h-full w-full"
         >
+          <RoadPolyline coords={NH48_CHENNAI_KRISHNAGIRI_COORDS} color={"#FF5733"} />
+          <RoadPolyline coords={NH32_CHENNAI_TRICHY_COORDS} color={"#3498DB"} />
           {Object.values(ROADS).map(road => (
             <RoadPolyline key={road.name} coords={road.coords} color={road.color} />
           ))}
