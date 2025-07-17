@@ -36,7 +36,7 @@ export function DistanceCalculator() {
     });
 
     toAutocomplete.addListener('place_changed', () => {
-      settoPlace(toAutocomplete.getPlace());
+      setToPlace(toAutocomplete.getPlace());
     });
   }, [places]);
 
@@ -90,7 +90,7 @@ export function DistanceCalculator() {
     setFromValue('');
     setToValue('');
     setFromPlace(null);
-    settoPlace(null);
+    setToPlace(null);
     setDirections(null);
     setDistance('');
     if(fromInputRef.current) fromInputRef.current.value = '';
