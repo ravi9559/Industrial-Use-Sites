@@ -228,4 +228,7 @@ export const SIPCOT_PARKS = {
     'oragadam': { name: 'SIPCOT Industrial Park, Oragadam', coords: { lat: 13.1047925, lng: 80.1990941 }},
     'irungattukottai': { name: 'SIPCOT Industrial Park, Irungattukottai', coords: { lat: 13.109575, lng: 80.1679758 }},
     'siruseri': { name: 'SIPCOT IT Park, Siruseri', coords: { lat: 13.0636495, lng: 80.2147026 }},
+    'theroy-kandigai': { name: 'Thervoy Kandigai SIPCOT', coords: { lat: 13.36072, lng: 79.98975 }},
+    'manalur': { name: 'Manalur SIPCOT', coords: { lat: 13.42617, lng: 80.04183 }},
+    'gummidipundi': { name: 'Gummidipundi SIPCOT', coords: { lat: 13.41095, lng: 80.11697 }},
 };
