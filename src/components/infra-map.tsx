@@ -10,7 +10,7 @@ import {
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
 import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_THATCHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, CHENGALPET_CIRCLE_COORDS, INDUSTRIAL_HUB_COORDS, CONSUMER_GOODS_STORAGE_COORDS } from '@/lib/constants';
-import { Ship, Plane, Building2 } from 'lucide-react';
+import { Ship, Plane, Building2, Warehouse } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
@@ -173,10 +173,14 @@ const InfraMapContent = () => {
         <Polygon coords={INDUSTRIAL_HUB_COORDS} color="#4B0082" />
         <Polygon coords={CONSUMER_GOODS_STORAGE_COORDS} color="#4169E1" />
 
-        {Object.values(PORTS).map(port => (
+        {Object.entries(PORTS).map(([key, port]) => (
           <AdvancedMarker key={port.name} position={port.coords}>
             <div className="p-2 bg-blue-500 text-white rounded-full shadow-lg">
-              <Ship className="h-6 w-6" />
+              {key === 'mappedu-dry-port' ? (
+                <Warehouse className="h-6 w-6" />
+              ) : (
+                <Ship className="h-6 w-6" />
+              )}
             </div>
           </AdvancedMarker>
         ))}
