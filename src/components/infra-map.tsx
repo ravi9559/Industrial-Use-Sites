@@ -9,7 +9,7 @@ import {
   useMapsLibrary,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_THATCHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, CHENGALPET_CIRCLE_COORDS } from '@/lib/constants';
+import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_THATCHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, CHENGALPET_CIRCLE_COORDS, INDUSTRIAL_HUB_COORDS } from '@/lib/constants';
 import { Ship, Plane, Building2 } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
@@ -170,6 +170,7 @@ const InfraMapContent = () => {
         <RoadPolyline coords={nh16_100km_coords} color={"#808080"} opacity={0.6} weight={2} />
         
         <Polygon coords={CHENGALPET_CIRCLE_COORDS} color="#4B0082" />
+        <Polygon coords={INDUSTRIAL_HUB_COORDS} color="#4B0082" />
 
         {Object.values(PORTS).map(port => (
           <AdvancedMarker key={port.name} position={port.coords}>
