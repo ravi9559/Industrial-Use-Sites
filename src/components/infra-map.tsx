@@ -72,7 +72,7 @@ const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: numb
     return (
       <AdvancedMarker position={park.coords}>
         <div className={`p-1 ${color} rounded-full shadow-lg`}>
-          <Building2 className="h-3 w-3 text-white" />
+          <Building2 className="h-2 w-2 text-white" />
         </div>
       </AdvancedMarker>
     );
@@ -299,19 +299,19 @@ const InfraMapContent = () => {
 
         {Object.entries(PORTS).map(([key, port]) => (
           <AdvancedMarker key={port.name} position={port.coords}>
-            <div className="p-1 bg-blue-500 text-white rounded-full shadow-lg">
+            <div className="p-0.5 bg-blue-500 text-white rounded-full shadow-lg">
               {key === 'mappedu-dry-port' ? (
-                <Warehouse className="h-3 w-3" />
+                <Warehouse className="h-2 w-2" />
               ) : (
-                <Ship className="h-3 w-3" />
+                <Ship className="h-2 w-2" />
               )}
             </div>
           </AdvancedMarker>
         ))}
         {Object.values(AIRPORTS).map(airport => (
           <AdvancedMarker key={airport.name} position={airport.coords}>
-            <div className="p-1 bg-teal-500 text-white rounded-full shadow-lg">
-              <Plane className="h-3 w-3" />
+            <div className="p-0.5 bg-teal-500 text-white rounded-full shadow-lg">
+              <Plane className="h-2 w-2" />
             </div>
           </AdvancedMarker>
         ))}
@@ -347,7 +347,7 @@ const InfraMapContent = () => {
         ))}
 
       </Map>
-      <div className="absolute top-4 left-4 z-10 w-full max-w-sm">
+      <div className="absolute bottom-4 right-4 z-10 w-full max-w-xs">
          <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg shadow-lg">
             <AccordionItem value="legend">
                <Card>
