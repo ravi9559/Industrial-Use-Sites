@@ -71,8 +71,8 @@ const Circle = ({ center, radius, color }: { center: { lat: number, lng: number 
 const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: number, lng: number } }, color: string }) => {
     return (
       <AdvancedMarker position={park.coords}>
-        <div className={`p-2 ${color} rounded-full shadow-lg`}>
-          <Building2 className="h-6 w-6 text-white" />
+        <div className={`p-1.5 ${color} rounded-full shadow-lg`}>
+          <Building2 className="h-4 w-4 text-white" />
         </div>
       </AdvancedMarker>
     );
@@ -299,19 +299,19 @@ const InfraMapContent = () => {
 
         {Object.entries(PORTS).map(([key, port]) => (
           <AdvancedMarker key={port.name} position={port.coords}>
-            <div className="p-2 bg-blue-500 text-white rounded-full shadow-lg">
+            <div className="p-1.5 bg-blue-500 text-white rounded-full shadow-lg">
               {key === 'mappedu-dry-port' ? (
-                <Warehouse className="h-6 w-6" />
+                <Warehouse className="h-4 w-4" />
               ) : (
-                <Ship className="h-6 w-6" />
+                <Ship className="h-4 w-4" />
               )}
             </div>
           </AdvancedMarker>
         ))}
         {Object.values(AIRPORTS).map(airport => (
           <AdvancedMarker key={airport.name} position={airport.coords}>
-            <div className="p-2 bg-teal-500 text-white rounded-full shadow-lg">
-              <Plane className="h-6 w-6" />
+            <div className="p-1.5 bg-teal-500 text-white rounded-full shadow-lg">
+              <Plane className="h-4 w-4" />
             </div>
           </AdvancedMarker>
         ))}
@@ -324,7 +324,7 @@ const InfraMapContent = () => {
         
         {nh48IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh48-ck-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-5 w-5 bg-black/50 text-white rounded-full text-[8px] font-mono">
+            <div className="flex items-center justify-center h-5 w-5 bg-gray-900/50 text-white rounded-full text-[8px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
@@ -332,7 +332,7 @@ const InfraMapContent = () => {
 
         {nh32IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh32-ct-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-5 w-5 bg-black/50 text-white rounded-full text-[8px] font-mono">
+            <div className="flex items-center justify-center h-5 w-5 bg-gray-900/50 text-white rounded-full text-[8px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
@@ -340,7 +340,7 @@ const InfraMapContent = () => {
 
         {nh16IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh16-ct-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-5 w-5 bg-black/50 text-white rounded-full text-[8px] font-mono">
+            <div className="flex items-center justify-center h-5 w-5 bg-gray-900/50 text-white rounded-full text-[8px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
