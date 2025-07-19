@@ -10,14 +10,13 @@ import {
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
 import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, CHENNAI_THATCHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, NE7_CHENNAI_BENGALURU_EXPRESS_HIGHWAY_COORDS } from '@/lib/constants';
-import { Ship, Plane, Building2, Warehouse } from 'lucide-react';
+import { Ship, Plane, Building2, Warehouse, Route, CircleDot, Info } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 import { DistanceCalculator } from './distance-calculator';
 import { RadiusCalculator } from './radius-calculator';
-import { Route, CircleDot } from 'lucide-react';
-import { Card } from './ui/card';
+import { Card, CardContent } from './ui/card';
 import { Legend } from './legend';
 
 const RoadPolyline = ({ coords, color, opacity = 0.9, weight = 6 }: { coords: { lat: number, lng: number }[], color: string, opacity?: number, weight?: number }) => {
@@ -349,8 +348,23 @@ const InfraMapContent = () => {
 
       </Map>
       <div className="absolute top-4 left-4 z-10 w-full max-w-sm">
-         <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg">
-          <AccordionItem value="distance" className="border-b-0">
+         <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg shadow-lg">
+            <AccordionItem value="legend">
+               <Card>
+                  <AccordionTrigger className="p-4 w-full">
+                       <div className="flex items-center gap-2 text-lg font-semibold">
+                          <Info className="h-6 w-6 text-primary" />
+                          <span>Legend</span>
+                      </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <CardContent className="p-4 pt-0">
+                      <Legend />
+                    </CardContent>
+                  </AccordionContent>
+              </Card>
+            </AccordionItem>
+            <AccordionItem value="distance" className="mt-2">
               <Card>
                   <AccordionTrigger className="p-4 w-full">
                       <div className="flex items-center gap-2 text-lg font-semibold">
@@ -362,9 +376,9 @@ const InfraMapContent = () => {
                       <DistanceCalculator />
                   </AccordionContent>
               </Card>
-          </AccordionItem>
-          <AccordionItem value="radius" className="border-b-0">
-               <Card className="mt-2">
+            </AccordionItem>
+            <AccordionItem value="radius" className="mt-2">
+               <Card>
                   <AccordionTrigger className="p-4 w-full">
                        <div className="flex items-center gap-2 text-lg font-semibold">
                           <CircleDot className="h-6 w-6 text-primary" />
@@ -375,11 +389,8 @@ const InfraMapContent = () => {
                       <RadiusCalculator />
                   </AccordionContent>
               </Card>
-          </AccordionItem>
+            </AccordionItem>
         </Accordion>
-      </div>
-      <div className="absolute bottom-4 right-4 z-10 w-full max-w-sm">
-        <Legend />
       </div>
     </>
   );

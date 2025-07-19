@@ -4,10 +4,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
 import { Button } from './ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { CardContent } from './ui/card';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { X, Search, CircleDot } from 'lucide-react';
+import { X, Search } from 'lucide-react';
 
 export function RadiusCalculator() {
   const map = useMap();
@@ -75,38 +75,36 @@ export function RadiusCalculator() {
   };
 
   return (
-    <div className="shadow-lg">
-      <CardContent className="space-y-4 pt-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+    <CardContent className="space-y-4 pt-6">
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          ref={locationInputRef}
+          placeholder="Location"
+          className="pl-10"
+          value={locationValue}
+          onChange={(e) => setLocationValue(e.target.value)}
+        />
+      </div>
+      <div className="space-y-2">
+          <Label htmlFor="radius">Radius (km)</Label>
           <Input
-            ref={locationInputRef}
-            placeholder="Location"
-            className="pl-10"
-            value={locationValue}
-            onChange={(e) => setLocationValue(e.target.value)}
+              id="radius"
+              type="number"
+              value={radiusValue}
+              onChange={(e) => setRadiusValue(Number(e.target.value))}
+              placeholder="Radius in km"
           />
-        </div>
-        <div className="space-y-2">
-            <Label htmlFor="radius">Radius (km)</Label>
-            <Input
-                id="radius"
-                type="number"
-                value={radiusValue}
-                onChange={(e) => setRadiusValue(Number(e.target.value))}
-                placeholder="Radius in km"
-            />
-        </div>
-        <div className="flex justify-between items-center">
-            <Button onClick={handleDrawCircle} disabled={!locationPlace}>
-                Draw Circle
-            </Button>
-            <Button variant="ghost" onClick={handleClear} className="text-muted-foreground">
-                <X className="h-4 w-4 mr-2" />
-                Clear
-            </Button>
-        </div>
-      </CardContent>
-    </div>
+      </div>
+      <div className="flex justify-between items-center">
+          <Button onClick={handleDrawCircle} disabled={!locationPlace}>
+              Draw Circle
+          </Button>
+          <Button variant="ghost" onClick={handleClear} className="text-muted-foreground">
+              <X className="h-4 w-4 mr-2" />
+              Clear
+          </Button>
+      </div>
+    </CardContent>
   );
 }

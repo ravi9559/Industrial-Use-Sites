@@ -1,5 +1,4 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Ship, Plane, Building2, Warehouse } from 'lucide-react';
 
 const LegendItem = ({ children }: { children: React.ReactNode }) => (
@@ -16,11 +15,7 @@ const IconIndicator = ({ children }: { children: React.ReactNode }) => (
 
 export function Legend() {
   return (
-    <Card className="bg-background/80 backdrop-blur-sm">
-      <CardHeader className="p-4">
-        <CardTitle className="text-lg">Legend</CardTitle>
-      </CardHeader>
-      <CardContent className="p-4 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
         <div className="space-y-3">
             <LegendItem>
                 <IconIndicator><Ship className="h-4 w-4 text-blue-500" /></IconIndicator>
@@ -73,7 +68,6 @@ export function Legend() {
                 <span>100km Trunk Road</span>
             </LegendItem>
         </div>
-      </CardContent>
-    </Card>
+      </div>
   );
 }

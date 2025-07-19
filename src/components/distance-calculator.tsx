@@ -4,9 +4,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
 import { Button } from './ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { CardContent } from './ui/card';
 import { Input } from './ui/input';
-import { X, Search, Route } from 'lucide-react';
+import { X, Search } from 'lucide-react';
 
 export function DistanceCalculator() {
   const map = useMap();
@@ -110,41 +110,39 @@ export function DistanceCalculator() {
   }, [toPlace]);
 
   return (
-    <div className="shadow-lg">
-      <CardContent className="space-y-4 pt-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            ref={fromInputRef}
-            placeholder="From"
-            className="pl-10"
-            defaultValue={fromValue}
-          />
+    <CardContent className="space-y-4 pt-6">
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          ref={fromInputRef}
+          placeholder="From"
+          className="pl-10"
+          defaultValue={fromValue}
+        />
+      </div>
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          ref={toInputRef}
+          placeholder="To"
+          className="pl-10"
+          defaultValue={toValue}
+        />
+      </div>
+      <div className="flex justify-between items-center">
+          <Button onClick={handleCalculate} disabled={!fromPlace || !toPlace}>
+              Calculate
+          </Button>
+          <Button variant="ghost" onClick={handleClear} className="text-muted-foreground">
+              <X className="h-4 w-4 mr-2" />
+              Clear
+          </Button>
+      </div>
+      {distance && (
+        <div className="text-center font-bold text-lg text-primary">
+          Distance: {distance}
         </div>
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            ref={toInputRef}
-            placeholder="To"
-            className="pl-10"
-            defaultValue={toValue}
-          />
-        </div>
-        <div className="flex justify-between items-center">
-            <Button onClick={handleCalculate} disabled={!fromPlace || !toPlace}>
-                Calculate
-            </Button>
-            <Button variant="ghost" onClick={handleClear} className="text-muted-foreground">
-                <X className="h-4 w-4 mr-2" />
-                Clear
-            </Button>
-        </div>
-        {distance && (
-          <div className="text-center font-bold text-lg text-primary">
-            Distance: {distance}
-          </div>
-        )}
-      </CardContent>
-    </div>
+      )}
+    </CardContent>
   );
 }
