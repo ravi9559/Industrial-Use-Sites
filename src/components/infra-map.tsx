@@ -9,7 +9,7 @@ import {
   useMapsLibrary,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, CHENNAI_THATCHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, NE7_CHENNAI_BENGALURU_EXPRESS_HIGHWAY_COORDS } from '@/lib/constants';
+import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, NE7_CHENNAI_BENGALURU_EXPRESS_HIGHWAY_COORDS } from '@/lib/constants';
 import { Ship, Plane, Building2, Warehouse, Route, CircleDot, Info } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
@@ -160,7 +160,7 @@ const InfraMapContent = () => {
       >
         <RoadPolyline coords={CHENNAI_OUTER_RING_ROAD_COORDS} color={"hsl(208 98% 73%)"} />
         <RoadPolyline coords={CHENNAI_PERIPHERAL_RING_ROAD_COORDS} color={"hsl(244 98% 73%)"} />
-        <RoadPolyline coords={CHENNAI_THATCHOOR_EXPRESSWAY_COORDS} color={"#FFA500"} />
+        <RoadPolyline coords={CHENNAI_CHITHOOR_EXPRESSWAY_COORDS} color={"#FFA500"} />
         <RoadPolyline coords={STRR_SATELLITE_TOWN_RING_ROAD_COORDS} color={"#228B22"} />
         <RoadPolyline coords={NE7_CHENNAI_BENGALURU_EXPRESS_HIGHWAY_COORDS} color={"#FF00FF"} />
         
@@ -189,7 +189,7 @@ const InfraMapContent = () => {
               <div className="text-[10px] leading-tight">30/35</div>
             </div>
         </AdvancedMarker>
-        <Circle center={{ lat: 13.008209, lng: 79.756661 }} radius={5000} color="#FFC300" />
+        <Circle center={{ lat: 13.008209, lng: 79.756661 }} radius={5000} color="#FFC3 собою0" />
         <AdvancedMarker position={{ lat: 13.008209, lng: 79.756661 }}>
             <div className="flex flex-col items-center justify-center h-12 w-12 bg-background text-foreground rounded-full shadow-md p-1">
               <div className="text-sm font-bold">220</div>
@@ -406,3 +406,5 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     </APIProvider>
   );
 }
+
+    

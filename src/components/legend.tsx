@@ -53,7 +53,7 @@ export function Legend() {
             </LegendItem>
              <LegendItem>
                 <LineIndicator color="#FFA500" />
-                <span>Thatchoor Expressway</span>
+                <span>Chithoor Expressway</span>
             </LegendItem>
             <LegendItem>
                 <LineIndicator color="#228B22" />
@@ -71,3 +71,5 @@ export function Legend() {
       </div>
   );
 }
+
+    
