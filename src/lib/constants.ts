@@ -232,10 +232,3 @@ export const SIPCOT_PARKS = {
     'manalur': { name: 'Manalur SIPCOT', coords: { lat: 13.42617, lng: 80.04183 }},
     'gummidipundi': { name: 'Gummidipundi SIPCOT', coords: { lat: 13.41095, lng: 80.11697 }},
 };
-
-export const FOR_SALE_SITES = {
-  'industrial-site-1': {
-    name: 'Industrial Site For Sale',
-    coords: { lat: 13.256481, lng: 80.050443 }
-  }
-};
