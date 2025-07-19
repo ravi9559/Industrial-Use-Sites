@@ -38,7 +38,7 @@ export function Legend() {
                 <span>SIPCOT Park</span>
             </LegendItem>
              <LegendItem>
-                <IconIndicator><div className="h-4 w-4 bg-background text-foreground rounded-full shadow-md flex items-center justify-center text-[8px]">2XX</div></IconIndicator>
+                <IconIndicator><div className="h-5 w-5 bg-white text-blue-700 rounded-full shadow-md flex items-center justify-center text-[8px] font-bold border border-blue-200">2XX</div></IconIndicator>
                 <span>Available Land</span>
             </LegendItem>
         </div>
@@ -71,5 +71,3 @@ export function Legend() {
       </div>
   );
 }
-
-    
