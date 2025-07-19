@@ -9,8 +9,8 @@ import {
   useMapsLibrary,
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
-import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_THATCHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, CHENGALPET_CIRCLE_COORDS, INDUSTRIAL_HUB_COORDS, CONSUMER_GOODS_STORAGE_COORDS } from '@/lib/constants';
-import { Ship, Plane, Building2, Warehouse } from 'lucide-react';
+import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, FOR_SALE_SITES, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, NE7_CHENNAI_BENGALURU_EXPRESSWAY_COORDS, CHENNAI_THATCHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, CHENGALPET_CIRCLE_COORDS, INDUSTRIAL_HUB_COORDS, CONSUMER_GOODS_STORAGE_COORDS } from '@/lib/constants';
+import { Ship, Plane, Building2, Warehouse, DollarSign } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
@@ -196,6 +196,13 @@ const InfraMapContent = () => {
         ))}
         {Object.values(SIPCOT_PARKS).map(park => (
           <ParkMarker key={park.name} park={park} color="bg-purple-500" />
+        ))}
+        {Object.values(FOR_SALE_SITES).map(site => (
+          <AdvancedMarker key={site.name} position={site.coords}>
+             <div className="p-2 bg-green-600 text-white rounded-full shadow-lg">
+                <DollarSign className="h-6 w-6" />
+              </div>
+          </AdvancedMarker>
         ))}
 
         {nh48IntervalPoints.map((point, index) => (
