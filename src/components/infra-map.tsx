@@ -18,6 +18,7 @@ import { DistanceCalculator } from './distance-calculator';
 import { RadiusCalculator } from './radius-calculator';
 import { Route, CircleDot } from 'lucide-react';
 import { Card } from './ui/card';
+import { Legend } from './legend';
 
 const RoadPolyline = ({ coords, color, opacity = 0.9, weight = 6 }: { coords: { lat: number, lng: number }[], color: string, opacity?: number, weight?: number }) => {
   const map = useMap();
@@ -71,8 +72,8 @@ const Circle = ({ center, radius, color }: { center: { lat: number, lng: number 
 const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: number, lng: number } }, color: string }) => {
     return (
       <AdvancedMarker position={park.coords}>
-        <div className={`p-1.5 ${color} rounded-full shadow-lg`}>
-          <Building2 className="h-4 w-4 text-white" />
+        <div className={`p-1 ${color} rounded-full shadow-lg`}>
+          <Building2 className="h-3 w-3 text-white" />
         </div>
       </AdvancedMarker>
     );
@@ -299,19 +300,19 @@ const InfraMapContent = () => {
 
         {Object.entries(PORTS).map(([key, port]) => (
           <AdvancedMarker key={port.name} position={port.coords}>
-            <div className="p-1.5 bg-blue-500 text-white rounded-full shadow-lg">
+            <div className="p-1 bg-blue-500 text-white rounded-full shadow-lg">
               {key === 'mappedu-dry-port' ? (
-                <Warehouse className="h-4 w-4" />
+                <Warehouse className="h-3 w-3" />
               ) : (
-                <Ship className="h-4 w-4" />
+                <Ship className="h-3 w-3" />
               )}
             </div>
           </AdvancedMarker>
         ))}
         {Object.values(AIRPORTS).map(airport => (
           <AdvancedMarker key={airport.name} position={airport.coords}>
-            <div className="p-1.5 bg-teal-500 text-white rounded-full shadow-lg">
-              <Plane className="h-4 w-4" />
+            <div className="p-1 bg-teal-500 text-white rounded-full shadow-lg">
+              <Plane className="h-3 w-3" />
             </div>
           </AdvancedMarker>
         ))}
@@ -377,6 +378,9 @@ const InfraMapContent = () => {
           </AccordionItem>
         </Accordion>
       </div>
+      <div className="absolute bottom-4 right-4 z-10 w-full max-w-sm">
+        <Legend />
+      </div>
     </>
   );
 };
@@ -391,5 +395,3 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     </APIProvider>
   );
 }
-
-    
