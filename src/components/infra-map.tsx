@@ -69,6 +69,31 @@ const Polygon = ({ coords, color }: { coords: { lat: number, lng: number }[], co
   return null;
 }
 
+const Circle = ({ center, radius, color }: { center: { lat: number, lng: number }, radius: number, color: string }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map) return;
+
+    const circle = new google.maps.Circle({
+      strokeColor: color,
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: color,
+      fillOpacity: 0.35,
+      map,
+      center,
+      radius, // in meters
+    });
+
+    return () => {
+      circle.setMap(null);
+    };
+  }, [map, center, radius, color]);
+
+  return null;
+}
+
 const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: number, lng: number } }, color: string }) => {
     return (
       <AdvancedMarker position={park.coords}>
@@ -172,6 +197,8 @@ const InfraMapContent = () => {
         <Polygon coords={CHENGALPET_CIRCLE_COORDS} color="#4B0082" />
         <Polygon coords={INDUSTRIAL_HUB_COORDS} color="#4B0082" />
         <Polygon coords={CONSUMER_GOODS_STORAGE_COORDS} color="#4169E1" />
+        
+        <Circle center={{ lat: 12.825122, lng: 79.959865 }} radius={5000} color="#800080" />
 
         {Object.entries(PORTS).map(([key, port]) => (
           <AdvancedMarker key={port.name} position={port.coords}>
