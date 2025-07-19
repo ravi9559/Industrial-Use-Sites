@@ -201,6 +201,7 @@ const InfraMapContent = () => {
         <Circle center={{ lat: 13.256481, lng: 80.050443 }} radius={5000} color="#FFC300" />
         <Circle center={{ lat: 12.825122, lng: 79.959865 }} radius={5000} color="#FFC300" />
         <Circle center={{ lat: 12.935568, lng: 79.911113 }} radius={5000} color="#FFC300" />
+        <Circle center={{ lat: 13.008209, lng: 79.756661 }} radius={5000} color="#FFC300" />
 
         {Object.entries(PORTS).map(([key, port]) => (
           <AdvancedMarker key={port.name} position={port.coords}>
