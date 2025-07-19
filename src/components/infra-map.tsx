@@ -133,12 +133,15 @@ const InfraMapContent = () => {
     setNh16_100km_coords(calculate100kmPath(NH16_CHENNAI_TADA_COORDS));
     
     setMapOptions({
-        mapTypeControl: true,
-        mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          mapTypeIds: ['roadmap', 'hybrid'],
-        },
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+        position: google.maps.ControlPosition.TOP_RIGHT,
+        mapTypeIds: ['roadmap', 'hybrid'],
+      },
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.TOP_RIGHT,
+      }
     });
 
   }, [geometry]);
@@ -189,7 +192,7 @@ const InfraMapContent = () => {
               <div className="text-[10px] leading-tight">30/35</div>
             </div>
         </AdvancedMarker>
-        <Circle center={{ lat: 13.008209, lng: 79.756661 }} radius={5000} color="#FFC3 собою0" />
+        <Circle center={{ lat: 13.008209, lng: 79.756661 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 13.008209, lng: 79.756661 }}>
             <div className="flex flex-col items-center justify-center h-12 w-12 bg-background text-foreground rounded-full shadow-md p-1">
               <div className="text-sm font-bold">220</div>
@@ -347,14 +350,14 @@ const InfraMapContent = () => {
         ))}
 
       </Map>
-      <div className="absolute bottom-4 right-4 z-10 w-full max-w-xs">
+      <div className="absolute bottom-4 right-4 z-10 w-full max-w-[320px]">
          <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg shadow-lg">
             <AccordionItem value="legend">
                <Card>
                   <AccordionTrigger className="p-4 w-full">
                        <div className="flex items-center gap-2 text-lg font-semibold">
-                          <Info className="h-6 w-6 text-primary" />
-                          <span>Legend</span>
+                          <Info className="h-5 w-5 text-primary" />
+                          <span className="text-base">Legend</span>
                       </div>
                   </AccordionTrigger>
                   <AccordionContent>
@@ -368,8 +371,8 @@ const InfraMapContent = () => {
               <Card>
                   <AccordionTrigger className="p-4 w-full">
                       <div className="flex items-center gap-2 text-lg font-semibold">
-                          <Route className="h-6 w-6 text-primary" />
-                          <span>Distance Calculator</span>
+                          <Route className="h-5 w-5 text-primary" />
+                          <span className="text-base">Distance Calculator</span>
                       </div>
                   </AccordionTrigger>
                   <AccordionContent>
@@ -381,8 +384,8 @@ const InfraMapContent = () => {
                <Card>
                   <AccordionTrigger className="p-4 w-full">
                        <div className="flex items-center gap-2 text-lg font-semibold">
-                          <CircleDot className="h-6 w-6 text-primary" />
-                          <span>Circle Radius</span>
+                          <CircleDot className="h-5 w-5 text-primary" />
+                          <span className="text-base">Circle Radius</span>
                       </div>
                   </AccordionTrigger>
                   <AccordionContent>
@@ -406,5 +409,3 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     </APIProvider>
   );
 }
-
-    
