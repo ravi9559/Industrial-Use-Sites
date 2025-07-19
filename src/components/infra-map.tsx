@@ -323,7 +323,7 @@ const InfraMapContent = () => {
         
         {nh48IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh48-ck-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-8 w-8 bg-orange-600 text-white rounded-full shadow-md text-xs font-bold">
+            <div className="flex items-center justify-center h-5 w-5 bg-black/50 text-white rounded-full text-[8px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
@@ -331,7 +331,7 @@ const InfraMapContent = () => {
 
         {nh32IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh32-ct-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-8 w-8 bg-cyan-600 text-white rounded-full shadow-md text-xs font-bold">
+            <div className="flex items-center justify-center h-5 w-5 bg-black/50 text-white rounded-full text-[8px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
@@ -339,7 +339,7 @@ const InfraMapContent = () => {
 
         {nh16IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh16-ct-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-8 w-8 bg-green-600 text-white rounded-full shadow-md text-xs font-bold">
+            <div className="flex items-center justify-center h-5 w-5 bg-black/50 text-white rounded-full text-[8px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
