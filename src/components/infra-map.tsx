@@ -17,6 +17,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './
 import { DistanceCalculator } from './distance-calculator';
 import { RadiusCalculator } from './radius-calculator';
 import { Route, CircleDot } from 'lucide-react';
+import { Card } from './ui/card';
 
 const RoadPolyline = ({ coords, color, opacity = 0.9, weight = 6 }: { coords: { lat: number, lng: number }[], color: string, opacity?: number, weight?: number }) => {
   const map = useMap();
