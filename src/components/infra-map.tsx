@@ -10,7 +10,7 @@ import {
   AdvancedMarker
 } from '@vis.gl/react-google-maps';
 import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNAI_KRISHNAGIRI_COORDS, NH32_CHENNAI_TRICHY_COORDS, NH16_CHENNAI_TADA_COORDS, CHENNAI_CHITHOOR_EXPRESSWAY_COORDS, CHENNAI_OUTER_RING_ROAD_COORDS, CHENNAI_PERIPHERAL_RING_ROAD_COORDS, STRR_SATELLITE_TOWN_RING_ROAD_COORDS, NE7_CHENNAI_BENGALURU_EXPRESS_HIGHWAY_COORDS } from '@/lib/constants';
-import { Ship, Plane, Building2, Warehouse, Route, CircleDot, Info } from 'lucide-react';
+import { Ship, Plane, Building2, Warehouse, Route, CircleDot, Info, Settings2, X } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
@@ -18,6 +18,7 @@ import { DistanceCalculator } from './distance-calculator';
 import { RadiusCalculator } from './radius-calculator';
 import { Card, CardContent } from './ui/card';
 import { Legend } from './legend';
+import { Button } from './ui/button';
 
 const RoadPolyline = ({ coords, color, opacity = 0.9, weight = 6 }: { coords: { lat: number, lng: number }[], color: string, opacity?: number, weight?: number }) => {
   const map = useMap();
@@ -71,7 +72,7 @@ const Circle = ({ center, radius, color }: { center: { lat: number, lng: number 
 const ParkMarker = ({ park, color }: { park: { name: string; coords: { lat: number, lng: number } }, color: string }) => {
     return (
       <AdvancedMarker position={park.coords}>
-        <div className={`p-1 ${color} rounded-full shadow-lg`}>
+        <div className={`p-0.5 ${color} rounded-full shadow-lg`}>
           <Building2 className="h-2 w-2 text-white" />
         </div>
       </AdvancedMarker>
@@ -84,6 +85,7 @@ const InfraMapContent = () => {
   const [nh32_100km_coords, setNh32_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
   const [nh16_100km_coords, setNh16_100km_coords] = useState<({ lat: number; lng: number; }[])>([]);
   const [mapOptions, setMapOptions] = useState<google.maps.MapOptions>({});
+  const [isToolPanelOpen, setIsToolPanelOpen] = useState(true);
 
   const nh48IntervalPoints: IntervalPoint[] = useMemo(() =>
     getPointsAtIntervals(NH48_CHENNAI_KRISHNAGIRI_COORDS, 10, 100),
@@ -327,7 +329,7 @@ const InfraMapContent = () => {
         
         {nh48IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh48-ck-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-5 w-5 bg-gray-900/50 text-white rounded-full text-[8px] font-mono">
+            <div className="flex items-center justify-center h-4 w-4 bg-gray-900/50 text-white rounded-full text-[7px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
@@ -335,7 +337,7 @@ const InfraMapContent = () => {
 
         {nh32IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh32-ct-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-5 w-5 bg-gray-900/50 text-white rounded-full text-[8px] font-mono">
+             <div className="flex items-center justify-center h-4 w-4 bg-gray-900/50 text-white rounded-full text-[7px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
@@ -343,57 +345,80 @@ const InfraMapContent = () => {
 
         {nh16IntervalPoints.map((point, index) => (
           <AdvancedMarker key={`nh16-ct-pt-${index}`} position={point}>
-            <div className="flex items-center justify-center h-5 w-5 bg-gray-900/50 text-white rounded-full text-[8px] font-mono">
+            <div className="flex items-center justify-center h-4 w-4 bg-gray-900/50 text-white rounded-full text-[7px] font-mono">
               {point.distance}
             </div>
           </AdvancedMarker>
         ))}
 
       </Map>
-      <div className="absolute bottom-4 right-4 z-10 w-full max-w-[320px]">
-         <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <AccordionItem value="legend">
-               <Card>
-                  <AccordionTrigger className="p-4 w-full">
-                       <div className="flex items-center gap-2 text-lg font-semibold">
-                          <Info className="h-5 w-5 text-primary" />
-                          <span className="text-base">Legend</span>
-                      </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <CardContent className="p-4 pt-0">
-                      <Legend />
-                    </CardContent>
-                  </AccordionContent>
-              </Card>
-            </AccordionItem>
-            <AccordionItem value="distance" className="mt-2">
-              <Card>
-                  <AccordionTrigger className="p-4 w-full">
-                      <div className="flex items-center gap-2 text-lg font-semibold">
-                          <Route className="h-5 w-5 text-primary" />
-                          <span className="text-base">Distance Calculator</span>
-                      </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                      <DistanceCalculator />
-                  </AccordionContent>
-              </Card>
-            </AccordionItem>
-            <AccordionItem value="radius" className="mt-2">
-               <Card>
-                  <AccordionTrigger className="p-4 w-full">
-                       <div className="flex items-center gap-2 text-lg font-semibold">
-                          <CircleDot className="h-5 w-5 text-primary" />
-                          <span className="text-base">Circle Radius</span>
-                      </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                      <RadiusCalculator />
-                  </AccordionContent>
-              </Card>
-            </AccordionItem>
-        </Accordion>
+      <div className="absolute bottom-4 right-4 z-10">
+        {!isToolPanelOpen && (
+           <Button
+            size="icon"
+            onClick={() => setIsToolPanelOpen(true)}
+            className="rounded-full shadow-lg"
+            aria-label="Open Tools"
+          >
+            <Settings2 className="h-5 w-5" />
+          </Button>
+        )}
+        {isToolPanelOpen && (
+          <div className="w-full max-w-[320px] relative">
+            <Button
+              variant="destructive"
+              size="icon"
+              onClick={() => setIsToolPanelOpen(false)}
+              className="absolute -top-2 -right-2 z-20 rounded-full h-7 w-7"
+              aria-label="Close Tools"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+            <Accordion type="single" collapsible className="w-full bg-background/80 backdrop-blur-sm rounded-lg shadow-lg">
+                <AccordionItem value="legend">
+                   <Card>
+                      <AccordionTrigger className="p-4 w-full">
+                           <div className="flex items-center gap-2 text-lg font-semibold">
+                              <Info className="h-5 w-5 text-primary" />
+                              <span className="text-base">Legend</span>
+                          </div>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <CardContent className="p-4 pt-0">
+                          <Legend />
+                        </CardContent>
+                      </AccordionContent>
+                  </Card>
+                </AccordionItem>
+                <AccordionItem value="distance" className="mt-2">
+                  <Card>
+                      <AccordionTrigger className="p-4 w-full">
+                          <div className="flex items-center gap-2 text-lg font-semibold">
+                              <Route className="h-5 w-5 text-primary" />
+                              <span className="text-base">Distance Calculator</span>
+                          </div>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                          <DistanceCalculator />
+                      </AccordionContent>
+                  </Card>
+                </AccordionItem>
+                <AccordionItem value="radius" className="mt-2">
+                   <Card>
+                      <AccordionTrigger className="p-4 w-full">
+                           <div className="flex items-center gap-2 text-lg font-semibold">
+                              <CircleDot className="h-5 w-5 text-primary" />
+                              <span className="text-base">Circle Radius</span>
+                          </div>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                          <RadiusCalculator />
+                      </AccordionContent>
+                  </Card>
+                </AccordionItem>
+            </Accordion>
+          </div>
+        )}
       </div>
     </>
   );
@@ -409,3 +434,5 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     </APIProvider>
   );
 }
+
+    
