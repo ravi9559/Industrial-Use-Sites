@@ -13,8 +13,6 @@ import { CHENNAI_CENTER, PORTS, AIRPORTS, SIDCO_PARKS, SIPCOT_PARKS, NH48_CHENNA
 import { Ship, Plane, Building2, Warehouse } from 'lucide-react';
 import { getPointsAtIntervals } from '@/lib/utils';
 import type { IntervalPoint } from '@/lib/utils';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 import { DistanceCalculator } from './distance-calculator';
 import { RadiusCalculator } from './radius-calculator';
@@ -40,31 +38,6 @@ const RoadPolyline = ({ coords, color, opacity = 0.9, weight = 6 }: { coords: { 
       roadPath.setMap(null);
     };
   }, [map, coords, color, opacity, weight]);
-
-  return null;
-}
-
-const Polygon = ({ coords, color }: { coords: { lat: number, lng: number }[], color: string }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!map || coords.length === 0) return;
-
-    const polygon = new google.maps.Polygon({
-      paths: coords,
-      strokeColor: color,
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: color,
-      fillOpacity: 0.35,
-    });
-
-    polygon.setMap(map);
-
-    return () => {
-      polygon.setMap(null);
-    };
-  }, [map, coords, color]);
 
   return null;
 }
@@ -199,6 +172,10 @@ const InfraMapContent = () => {
         <Circle center={{ lat: 12.935568, lng: 79.911113 }} radius={5000} color="#FFC300" />
         <Circle center={{ lat: 13.008209, lng: 79.756661 }} radius={5000} color="#FFC300" />
         <Circle center={{ lat: 13.437441, lng: 80.114800 }} radius={5000} color="#FFC300" />
+        <Circle center={{ lat: 12.659998, lng: 78.026792 }} radius={5000} color="#FFC300" />
+        <Circle center={{ lat: 12.608359, lng: 77.939155 }} radius={5000} color="#FFC300" />
+        <Circle center={{ lat: 12.622712, lng: 77.662489 }} radius={5000} color="#FFC300" />
+        <Circle center={{ lat: 12.631886, lng: 78.073348 }} radius={5000} color="#FFC300" />
 
         {Object.entries(PORTS).map(([key, port]) => (
           <AdvancedMarker key={port.name} position={port.coords}>
