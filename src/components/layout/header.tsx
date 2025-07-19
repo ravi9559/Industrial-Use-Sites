@@ -40,7 +40,7 @@ export function Header() {
             <Button asChild>
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="h-5 w-5" />
-                <span>Contact Us</span>
+                <span>Contact <b className="font-bold">O2O</b></span>
               </a>
             </Button>
           </div>
