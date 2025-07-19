@@ -178,6 +178,11 @@ const InfraMapContent = () => {
         <Circle center={{ lat: 12.622712, lng: 77.662489 }} radius={5000} color="#FFC300" />
         <Circle center={{ lat: 12.631886, lng: 78.073348 }} radius={5000} color="#FFC300" />
         
+        <AdvancedMarker position={{ lat: 13.437441, lng: 80.114800 }}>
+            <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
+              244
+            </div>
+        </AdvancedMarker>
         <AdvancedMarker position={{ lat: 12.659998, lng: 78.026792 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
               269
