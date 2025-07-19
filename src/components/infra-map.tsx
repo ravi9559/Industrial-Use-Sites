@@ -169,6 +169,11 @@ const InfraMapContent = () => {
         <RoadPolyline coords={nh16_100km_coords} color={"#808080"} opacity={0.6} weight={2} />
         
         <Circle center={{ lat: 13.256481, lng: 80.050443 }} radius={5000} color="#FFC300" />
+        <AdvancedMarker position={{ lat: 13.256481, lng: 80.050443 }}>
+            <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
+              235
+            </div>
+        </AdvancedMarker>
         <Circle center={{ lat: 12.825122, lng: 79.959865 }} radius={5000} color="#FFC300" />
         <Circle center={{ lat: 12.935568, lng: 79.911113 }} radius={5000} color="#FFC300" />
         <Circle center={{ lat: 13.008209, lng: 79.756661 }} radius={5000} color="#FFC300" />
@@ -178,31 +183,30 @@ const InfraMapContent = () => {
             </div>
         </AdvancedMarker>
         <Circle center={{ lat: 13.437441, lng: 80.114800 }} radius={5000} color="#FFC300" />
-        <Circle center={{ lat: 12.659998, lng: 78.026792 }} radius={5000} color="#FFC300" />
-        <Circle center={{ lat: 12.608359, lng: 77.939155 }} radius={5000} color="#FFC300" />
-        <Circle center={{ lat: 12.622712, lng: 77.662489 }} radius={5000} color="#FFC300" />
-        <Circle center={{ lat: 12.631886, lng: 78.073348 }} radius={5000} color="#FFC300" />
-        
         <AdvancedMarker position={{ lat: 13.437441, lng: 80.114800 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
               244
             </div>
         </AdvancedMarker>
+        <Circle center={{ lat: 12.659998, lng: 78.026792 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.659998, lng: 78.026792 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
               269
             </div>
         </AdvancedMarker>
+        <Circle center={{ lat: 12.608359, lng: 77.939155 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.608359, lng: 77.939155 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
               268
             </div>
         </AdvancedMarker>
+        <Circle center={{ lat: 12.622712, lng: 77.662489 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.622712, lng: 77.662489 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
               267
             </div>
         </AdvancedMarker>
+        <Circle center={{ lat: 12.631886, lng: 78.073348 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.631886, lng: 78.073348 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
               266
