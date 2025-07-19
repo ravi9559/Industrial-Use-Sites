@@ -198,7 +198,8 @@ const InfraMapContent = () => {
         <Polygon coords={INDUSTRIAL_HUB_COORDS} color="#4B0082" />
         <Polygon coords={CONSUMER_GOODS_STORAGE_COORDS} color="#4169E1" />
         
-        <Circle center={{ lat: 12.825122, lng: 79.959865 }} radius={5000} color="#800080" />
+        <Circle center={{ lat: 12.825122, lng: 79.959865 }} radius={5000} color="#FFC300" />
+        <Circle center={{ lat: 12.935568, lng: 79.911113 }} radius={5000} color="#C70039" />
 
         {Object.entries(PORTS).map(([key, port]) => (
           <AdvancedMarker key={port.name} position={port.coords}>
