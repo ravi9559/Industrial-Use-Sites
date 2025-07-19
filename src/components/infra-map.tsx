@@ -184,8 +184,9 @@ const InfraMapContent = () => {
         </AdvancedMarker>
         <Circle center={{ lat: 12.935568, lng: 79.911113 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.935568, lng: 79.911113 }}>
-            <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
-              167
+            <div className="flex flex-col items-center justify-center h-12 w-12 bg-background text-foreground rounded-full shadow-md p-1">
+              <div className="text-sm font-bold">167</div>
+              <div className="text-[10px] leading-tight">30/35</div>
             </div>
         </AdvancedMarker>
         <Circle center={{ lat: 13.008209, lng: 79.756661 }} radius={5000} color="#FFC300" />
@@ -197,32 +198,34 @@ const InfraMapContent = () => {
         </AdvancedMarker>
         <Circle center={{ lat: 13.437441, lng: 80.114800 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 13.437441, lng: 80.114800 }}>
-            <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
-              244
+            <div className="flex flex-col items-center justify-center h-12 w-12 bg-background text-foreground rounded-full shadow-md p-1">
+              <div className="text-sm font-bold">244</div>
+              <div className="text-[10px] leading-tight">4/20</div>
             </div>
         </AdvancedMarker>
         <Circle center={{ lat: 12.659998, lng: 78.026792 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.659998, lng: 78.026792 }}>
-            <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
-              269
+            <div className="flex flex-col items-center justify-center h-12 w-12 bg-background text-foreground rounded-full shadow-md p-1">
+              <div className="text-sm font-bold">269</div>
+              <div className="text-[10px] leading-tight">50/90</div>
             </div>
         </AdvancedMarker>
         <Circle center={{ lat: 12.608359, lng: 77.939155 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.608359, lng: 77.939155 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
-              268
+              40
             </div>
         </AdvancedMarker>
         <Circle center={{ lat: 12.622712, lng: 77.662489 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.622712, lng: 77.662489 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
-              267
+              30
             </div>
         </AdvancedMarker>
         <Circle center={{ lat: 12.631886, lng: 78.073348 }} radius={5000} color="#FFC300" />
         <AdvancedMarker position={{ lat: 12.631886, lng: 78.073348 }}>
             <div className="flex items-center justify-center h-8 w-8 bg-background text-foreground rounded-full shadow-md text-xs font-bold">
-              266
+              50
             </div>
         </AdvancedMarker>
 
@@ -320,7 +323,3 @@ export default function InfraMap({ apiKey }: { apiKey: string }) {
     </APIProvider>
   );
 }
-
-    
-
-    
